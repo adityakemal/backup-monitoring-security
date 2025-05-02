@@ -1,0 +1,129 @@
+/* @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap'); */
+/* @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap'); */
+@import url('https://fonts.googleapis.com/css2?family=Geist:wght@100..900&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* :root {
+    --main-color: #fff;
+    --secondary-color: #000;
+  } */
+
+* {
+  /* font-family: 'Poppins', sans-serif; */
+  font-family: "Geist", sans-serif;
+  /* font-weight: 300; */
+  p,
+  button,
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  form {
+    color: #0A0A0A;
+  }
+}
+
+.ant-tabs-tab div.ant-tabs-tab-btn {
+  @apply !text-sm md:!text-base;
+}
+
+.ant-picker-range .ant-picker-input input {
+  @apply !text-sm md:!text-base;
+}
+
+.ant-tabs-tab {
+  @apply text-base !font-medium !text-neutral-400;
+  transition: color 0.3s ease;
+}
+
+.ant-tabs-tab-active .ant-tabs-tab-btn {
+  color: #3C82F6; /* Warna aktif (sesuaikan dengan kebutuhan Anda) */
+}
+
+.ant-tabs-tab:hover {
+  @apply !text-neutral-500;
+}
+
+@keyframes bgAnim {
+  0% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.login-container {
+  background-position: top center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  animation: bgAnim 40s ease 0s infinite alternate-reverse both;
+}
+
+thead {
+  th {
+    @apply !text-xs md:!text-sm uppercase !text-neutral-500;
+  }
+}
+
+tbody {
+  td {
+    @apply !text-xs md:!text-sm;
+  }
+}
+
+label {
+  @apply text-xs !important;
+}
+
+.ant-menu-submenu-title {
+  @apply text-white !important;
+}
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none !important;
+  margin: 0 !important;
+}
+
+/* Firefox */
+input[type='number'] {
+  -moz-appearance: textfield !important;
+}
+
+.ant-layout-sider-zero-width-trigger {
+  @apply !hidden;
+}
+
+.ant-pagination {
+  li {
+    @apply !rounded-full !border-none;
+  }
+}
+
+.ant-upload.ant-upload-select {
+  @apply !h-full !w-full;
+}
+
+.react-datepicker {
+  width: 100% !important; /* Pastikan DatePicker sesuai container */
+  font-size: 14px;
+}
+
+.react-datepicker__input-container input {
+  width: 100%; /* Pastikan inputnya sesuai container */
+  padding: 8px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+
+.react-datepicker-popper {
+  z-index: 1050 !important; /* Pastikan muncul di atas elemen lain */
+}
+
