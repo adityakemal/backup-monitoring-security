@@ -3,6 +3,8 @@ import { Grid, Layout } from "antd";
 import NavbarCustom from "./NavbarCustom";
 import SidebarCustom from "./SidebarCustom";
 import { useSharedStore } from "../shared.store";
+import { useStorageStore } from "../storage.store";
+import { cn } from "../../../lib/helper";
 const { Content } = Layout;
 
 type ILayoutCustomProps = {
@@ -15,14 +17,15 @@ const { useBreakpoint } = Grid;
 const LayoutCustom = ({ children, disableSidebar }: ILayoutCustomProps) => {
   const { collapsed } = useSharedStore();
   const { sm } = useBreakpoint();
+  const { mode } = useStorageStore();
 
   return (
-    <Layout className="!m-0 !p-0 !w-full">
+    <Layout className={cn("!m-0 !p-0 !w-full ", mode)}>
       <SidebarCustom disableSidebar={disableSidebar} />
-      <Layout className="!pb-0 bg-white h-dvh">
+      <Layout className="!pb-0 h-dvh">
         <NavbarCustom disableSidebar={disableSidebar} />
         <div className={` ${!collapsed && !sm && " hidden"}  transition-all`}>
-          <Content className=" overflow-y-auto  !m-[0] h-[calc(100dvh-64px)] bg-white">
+          <Content className=" overflow-y-auto  !m-[0] h-[calc(100dvh-64px)] bg-dynamicBase">
             <div className="container p-4 md:p-5 mx-auto">{children}</div>
           </Content>
         </div>

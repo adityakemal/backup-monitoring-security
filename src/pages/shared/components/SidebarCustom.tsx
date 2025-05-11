@@ -6,6 +6,10 @@ import { acceptablePathList } from "../../../lib/routes";
 import { GrUserSettings } from "react-icons/gr";
 import { AiFillSecurityScan } from "react-icons/ai";
 import LogoCustom from "./LogoCustom";
+import { cn } from "../../../lib/helper";
+import { useStorageStore } from "../storage.store";
+import React from "react";
+import colors from "../../../lib/colors";
 
 const { Sider } = Layout;
 const { useBreakpoint } = Grid;
@@ -17,6 +21,7 @@ export default function SidebarCustom({
 }) {
   const navigate = useNavigate();
   const { xs } = useBreakpoint();
+  const { mode } = useStorageStore();
 
   function getItem(
     label: string,
@@ -27,14 +32,33 @@ export default function SidebarCustom({
   ): any {
     const childrenList = children?.filter((f: any) => f !== undefined);
     const isSubMenuExist = key?.includes("sub_") && childrenList.length !== 0;
+
+    const themedIcon = icon
+      ? React.cloneElement(icon, {
+          style: {
+            color:
+              mode === "dark" ? colors.text.dark.primary : colors.text.primary,
+          },
+        })
+      : null;
+
     if (acceptablePathList?.includes(key) || isSubMenuExist) {
-      return { label, key, icon, children, disabled };
+      return {
+        label,
+        key,
+        icon: themedIcon,
+        children,
+        disabled,
+      };
     }
     return;
   }
-
   const items = [
-    getItem("Dashboard", "/dashboard", <BarChartOutlined />),
+    getItem(
+      "Dashboard",
+      "/dashboard",
+      <BarChartOutlined className="text-mainText dark:text-mainTextDark" />
+    ),
     // getItem("Task Management", "sub_1", <AuditOutlined />, [
     //   getItem("Mantri Task", "/task", null),
     //   getItem("Brief Report", "/brief-report", null),
@@ -54,7 +78,11 @@ export default function SidebarCustom({
     // ),
     // getItem("Location Management", "/location", <GrMapLocation />),
 
-    getItem("Setting", "/setting", <GrUserSettings />, null),
+    getItem(
+      "Setting",
+      "/setting",
+      <GrUserSettings className="text-mainText dark:text-mainTextDark" />
+    ),
   ];
 
   const { collapsed, setCollapsed, setOpenKeys, openKeys } = useSharedStore();
@@ -80,10 +108,12 @@ export default function SidebarCustom({
 
   return (
     <Sider
-      className={`min-h-screen  !bg-neutral-50 ${
-        disableSidebar ? "hidden" : ""
-      }`}
-      theme="light"
+      className={cn(
+        `min-h-screen border-r border-neutral-200 dark:border-neutral-800`,
+        disableSidebar ? "hidden" : "",
+        mode !== "light" ? "!bg-mainBgDark" : "!bg-neutral-50"
+      )}
+      // theme={mode === "dark" ? "dark" : "light"}
       width={disableSidebar ? 0 : 230}
       // collapsible
       breakpoint="md"
@@ -102,7 +132,10 @@ export default function SidebarCustom({
       </div>
       {/* <p className="text-4xl text-center pt-6">logo</p> */}
       <Menu
-        className="mt-2 !bg-neutral-50"
+        className={cn(
+          "mt-2 !bg-neutral-50",
+          mode !== "light" ? "!bg-mainBgDark" : "!bg-neutral-50"
+        )}
         style={{ border: 0 }}
         openKeys={openKeys}
         onOpenChange={onOpenChange}

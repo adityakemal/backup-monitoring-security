@@ -7,7 +7,8 @@ import {
   Tooltip,
   ResponsiveContainer,
 } from "recharts";
-import theme from "../../../lib/theme";
+import theme from "../../../lib/colors";
+import colors from "../../../lib/colors";
 
 const data = [
   { time: "00:00", activity: 5 },
@@ -55,7 +56,7 @@ export default function HoursActivities() {
         <Line
           type="monotone"
           dataKey="activity"
-          stroke={theme.mainColor}
+          stroke={colors.primary.main}
           strokeWidth={2}
           dot={{ r: 3 }}
           activeDot={{ r: 6 }}

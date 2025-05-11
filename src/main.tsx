@@ -1,109 +1,90 @@
-import React from "react";
+import React, { useEffect } from "react";
 import ReactDOM from "react-dom/client";
-import "./styles/main.css";
 import { RouterProvider } from "react-router-dom";
 import routes from "./lib/routes";
-import { ConfigProvider } from "antd";
-import dayjs from "dayjs";
-// import idID from "antd/locale/id_ID";
-import theme from "./lib/theme";
+import AntdProvider from "./lib/AntdProvider";
 import Provider from "./lib/provider";
-
+import dayjs from "dayjs";
+import { useStorageStore } from "./pages/shared/storage.store";
 dayjs.locale("id");
-const objMainColor: any = {
-  "--main-color": theme.mainColor,
-  "--main-bg": theme.mainBg,
-  "--main-border": theme.mainBorder,
-};
+import "./styles/main.css";
+import colors from "./lib/colors";
+
 if (window.location.hostname !== "localhost") {
   console.log = () => {};
 }
 
-ReactDOM.createRoot(document.getElementById("root")!).render(
-  <React.StrictMode>
-    <ConfigProvider
-      // locale={idID}
-      theme={{
-        token: {
-          colorPrimary: theme.mainColor,
-          colorText: "#031602",
-        },
-        components: {
-          Button: {
-            // colorPrimaryBgHover: "transparent",
-            // colorPrimaryBorder: theme.mainColor,
-            // colorPrimaryBg: "inherit",
-            // colorPrimaryActive: theme.mainColor,
-            // // primaryHoverBg: `${theme.mainColor}50`,
-            // // primaryHoverBorderColor: theme.mainColor,
-            // // primaryActiveBorderColor: theme.mainColor,
-            // // primaryColor: "#031602",
-            // colorPrimaryBgHover: "red",
-            // colorPrimaryBg: "red",
-            primaryShadow: "none",
-            // colorPrimaryTextActive: "black",
-            fontSizeLG: 14,
-            paddingBlockLG: 1,
-          },
-          DatePicker: {
-            inputFontSize: 12,
-          },
-          // Input: {
-          //   paddingBlock: 8.7,
-          //   inputFontSize: 16,
-          // },
-          // Pagination: {
-          //   itemActiveBg: theme.mainColor,
-          //   itemActiveColorDisabled: "white",
-          //   itemLinkBg: "red",
-          // },
-          Form: {
-            verticalLabelPadding: "0 0 2px",
-          },
-          Tabs: {
-            // itemColor: theme.mainColor,
-            // itemColor: "white",
-            titleFontSize: 16,
-          },
-          Menu: {
-            /* here is your component tokens */
-            itemSelectedBg: theme.mainBg,
-            itemHoverColor: theme.mainColor,
-            itemColor: "#a0a0a0",
-            subMenuItemBg: "#ffffff10",
-            itemSelectedColor: theme.mainColor,
-            // groupTitleColor: "red",
-            // darkItemSelectedColor: "red",
-            // colorSubItemBg: "red",
+const objMainColor: any = {
+  // Primary Colors
+  "--color-primary": colors.primary.main,
+  "--color-primary-light": colors.primary.light,
+  "--color-primary-dark": colors.primary.dark,
+  "--color-primary-contrast": colors.primary.contrast,
 
-            // itemHoverBg: theme.mainColoLight,
-            // itemActiveBg: "#EFFBFF",
-            // itemHoverColor: "#000000",
-            // collapsedIconSize: 24,
-            // iconSize: 18,
-            fontSize: 13,
-            iconSize: 14,
-            // itemMarginBlock: 24,
-            // itemPaddingInline: 150,
-            // inlineIndent: "0",
-          },
-          // Badge: {
-          //   indicatorHeightSM: 14,
-          //   textFontSizeSM: 10,
-          //   /* here is your component tokens */
-          // },
-          Pagination: {
-            /* here is your component tokens */
-            itemActiveBg: theme.mainColor + 10,
-            itemSize: 40,
-          },
-        },
-      }}>
+  // Secondary Colors
+  "--color-secondary": colors.secondary.main,
+  "--color-secondary-light": colors.secondary.light,
+  "--color-secondary-dark": colors.secondary.dark,
+  "--color-secondary-contrast": colors.secondary.contrast,
+
+  // Background Colors
+  "--color-background": colors.background.default,
+  "--color-background-paper": colors.background.paper,
+  "--color-background-dark": colors.background.dark,
+
+  // Text Colors
+  "--color-text-primary": colors.text.primary,
+  "--color-text-secondary": colors.text.secondary,
+  "--color-text-disabled": colors.text.disabled,
+  "--color-text-dark-primary": colors.text.dark.primary,
+  "--color-text-dark-secondary": colors.text.dark.secondary,
+  "--color-text-dark-disabled": colors.text.dark.disabled,
+
+  // Border Colors
+  "--color-border": colors.border.main,
+  "--color-border-light": colors.border.light,
+  "--color-border-dark": colors.border.dark,
+
+  // Semantic Colors
+  "--color-success": colors.success.main,
+  "--color-warning": colors.warning.main,
+  "--color-error": colors.error.main,
+  "--color-info": colors.info.main,
+
+  // Action Colors
+  "--color-action-hover": colors.action.hover,
+  "--color-action-selected": colors.action.selected,
+  "--color-action-disabled": colors.action.disabled,
+  "--color-action-disabled-bg": colors.action.disabledBackground,
+  "--color-action-focus": colors.action.focus,
+};
+
+// Create a wrapper component to handle dark mode
+function App() {
+  const { mode } = useStorageStore();
+
+  useEffect(() => {
+    const htmlElement = document.documentElement;
+    if (mode === "dark") {
+      htmlElement.classList.add("dark");
+    } else {
+      htmlElement.classList.remove("dark");
+    }
+  }, [mode]);
+
+  return (
+    <AntdProvider>
       <div style={objMainColor}>
         <Provider>
           <RouterProvider router={routes} />
         </Provider>
       </div>
-    </ConfigProvider>
+    </AntdProvider>
+  );
+}
+
+ReactDOM.createRoot(document.getElementById("root")!).render(
+  <React.StrictMode>
+    <App />
   </React.StrictMode>
 );

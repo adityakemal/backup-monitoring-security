@@ -81,7 +81,7 @@ export default function FormLogin() {
         <Button
           form="dynamicForm"
           htmlType="submit"
-          className="mt-3 w-full"
+          className="mt-3 w-full text-white"
           size="large"
           type="primary"
           // shape="round"

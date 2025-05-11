@@ -3,7 +3,7 @@ import { devtools, persist } from "zustand/middleware";
 // import { IRegion } from "../userManagement/userManagement.type";
 // import { devtools, persist } from "zustand/middleware";
 
-interface IStorage {
+export interface IStorage {
   auth: boolean;
   token: string;
   fullname: string;
@@ -25,6 +25,9 @@ interface IStorage {
   // handleIsOnProcessUploadReferralBulk: (state: boolean) => void;
   // isOnProcessUploadUserBulk: boolean;
   // handleIsOnProcessUploadUserBulk: (state: boolean) => void;
+  mode: ThemeMode;
+  setMode: (mode: ThemeMode) => void;
+  toggleTheme: () => void;
 }
 
 interface IRole {
@@ -34,15 +37,35 @@ interface IRole {
   // uuid?: string | undefined;
 }
 
+type ThemeMode = "light" | "dark" | "system";
+
 export const useStorageStore = create<IStorage>()(
   devtools(
     persist(
-      (set) => ({
+      (set, get) => ({
         auth: false,
         token: "",
         fullname: "",
         email: "",
         role: "",
+        mode: window.matchMedia("(prefers-color-scheme: dark)").matches
+          ? "dark"
+          : "light",
+        setMode: (mode) => set({ mode }),
+        toggleTheme: () => {
+          const currentMode = get().mode;
+          if (currentMode === "light") {
+            set({ mode: "dark" });
+          } else if (currentMode === "dark") {
+            set({ mode: "light" });
+          } else {
+            // If in system mode, toggle to the opposite of the current system preference
+            const prefersDark = window.matchMedia(
+              "(prefers-color-scheme: dark)"
+            ).matches;
+            set({ mode: prefersDark ? "light" : "dark" });
+          }
+        },
         // otpDate: Date.now(),
         // refresh_token: "",
         // personal_number: "",

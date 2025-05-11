@@ -1,31 +1,126 @@
 /* @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap'); */
 /* @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap'); */
 @import url('https://fonts.googleapis.com/css2?family=Geist:wght@100..900&display=swap');
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
 
-/* :root {
-    --main-color: #fff;
-    --secondary-color: #000;
-  } */
+
 
 * {
   /* font-family: 'Poppins', sans-serif; */
   font-family: "Geist", sans-serif;
   /* font-weight: 300; */
-  p,
-  button,
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6,
-  form {
-    color: #0A0A0A;
-  }
 }
+
+
+@import "tailwindcss";
+@custom-variant dark (&:where(.dark, .dark *));
+/* @custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *)); */
+
+
+
+/* Theme variables using the new color system */
+@theme inline {
+  /* Primary Colors */
+  --color-mainColor: var(--color-primary);
+  --color-mainColorLight: var(--color-primary-light);
+  --color-mainColorDark: var(--color-primary-dark);
+  --color-mainColorContrast: var(--color-primary-contrast);
+
+  /* Secondary Colors */
+  --color-secondary: var(--color-secondary);
+  --color-secondaryLight: var(--color-secondary-light);
+  --color-secondaryDark: var(--color-secondary-dark);
+  --color-secondaryContrast: var(--color-secondary-contrast);
+
+  /* Background Colors */
+  --color-mainBg: var(--color-background);
+  --color-mainBgPaper: var(--color-background-paper);
+  --color-mainBgDark: var(--color-background-dark);
+
+  /* Text Colors */
+  --color-mainText: var(--color-text-primary);
+  --color-mainTextSecondary: var(--color-text-secondary);
+  --color-mainTextDisabled: var(--color-text-disabled);
+  --color-mainTextDark: var(--color-text-dark-primary);
+  --color-mainTextDarkSecondary: var(--color-text-dark-secondary);
+  --color-mainTextDarkDisabled: var(--color-text-dark-disabled);
+
+  /* Border Colors */
+  /* --color-mainBorder: var(--color-border);
+  --color-mainBorderLight: var(--color-border-light);
+  --color-mainBorderDark: var(--color-border-dark); */
+
+  /* Semantic Colors */
+  --color-success: var(--color-success);
+  --color-warning: var(--color-warning);
+  --color-error: var(--color-error);
+  --color-info: var(--color-info);
+
+  /* Action Colors */
+  --color-actionHover: var(--color-action-hover);
+  --color-actionSelected: var(--color-action-selected);
+  --color-actionDisabled: var(--color-action-disabled);
+  --color-actionDisabledBg: var(--color-action-disabled-bg);
+  --color-actionFocus: var(--color-action-focus);
+}
+
+
+
+  @layer base {
+    p,
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    span,
+    form {
+      @apply text-mainText;
+    }
+
+    .bg-dynamic {
+      @apply !bg-mainBg;
+    }
+
+    .bg-dynamicBase {
+      @apply !bg-mainBgPaper;
+    }
+
+   
+
+    .dark {
+      /* dark */
+      p,
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6,
+      span,
+      form {
+        @apply text-mainTextDark;
+      }
+
+      .bg-dynamicBase {
+        @apply !bg-mainBgDark;
+      }
+
+      .bg-dynamic {
+        @apply !bg-neutral-800; /* Changed to a slightly lighter shade for contrast */
+      }
+     
+
+    }
+}
+
+
+
+
+
+
+
+
 
 .ant-tabs-tab div.ant-tabs-tab-btn {
   @apply !text-sm md:!text-base;
@@ -78,11 +173,11 @@ tbody {
 }
 
 label {
-  @apply text-xs !important;
+  @apply !text-xs;
 }
 
 .ant-menu-submenu-title {
-  @apply text-white !important;
+  @apply !text-white;
 }
 
 /* Chrome, Safari, Edge, Opera */
@@ -127,3 +222,54 @@ input[type='number'] {
   z-index: 1050 !important; /* Pastikan muncul di atas elemen lain */
 }
 
+
+
+/* //input overide ant design */
+
+/* Input styles */
+.ant-input,
+.ant-input-number,
+.ant-select-selector {
+  @apply !bg-mainBgPaper dark:!bg-neutral-800 !border-neutral-200 dark:!border-neutral-700 !text-mainText dark:!text-mainTextDark !rounded-lg;
+}
+
+.ant-input:hover,
+.ant-input-number:hover,
+.ant-select:hover .ant-select-selector {
+  @apply !border-mainColor dark:!border-mainColorLight;
+}
+
+.ant-input:focus,
+.ant-input-number-focused,
+.ant-select-focused .ant-select-selector {
+  @apply !border-mainColor dark:!border-mainColorLight !shadow-none;
+}
+
+.ant-input::placeholder,
+.ant-input-number::placeholder,
+.ant-select-selection-placeholder {
+  @apply !text-mainTextSecondary dark:!text-mainTextDarkSecondary;
+}
+
+.ant-input-disabled,
+.ant-input-number-disabled,
+.ant-select-disabled .ant-select-selector {
+  @apply !bg-neutral-100 dark:!bg-neutral-900 !text-mainTextDisabled dark:!text-mainTextDarkDisabled;
+}
+
+/* Select dropdown styles */
+.ant-select-dropdown {
+  @apply !bg-mainBgPaper dark:!bg-neutral-800 !border-neutral-200 dark:!border-neutral-700;
+}
+
+.ant-select-item {
+  @apply !text-mainText dark:!text-mainTextDark;
+}
+
+.ant-select-item-option-selected {
+  @apply !bg-mainColor/10 dark:!bg-mainColor/20 !text-mainColor dark:!text-mainColorLight;
+}
+
+.ant-select-item-option-active {
+  @apply !bg-mainColor/5 dark:!bg-mainColor/10;
+}

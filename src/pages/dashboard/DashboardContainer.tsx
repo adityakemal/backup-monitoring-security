@@ -14,6 +14,7 @@ import HoursActivities from "./components/HoursActivities";
 import { FaAppStore, FaGlobe, FaKey, FaMinus, FaSquare } from "react-icons/fa";
 import { Image } from "antd";
 import { TbAppsFilled } from "react-icons/tb";
+import CustomBox from "../shared/components/CustomBox";
 
 const data = [
   {
@@ -45,10 +46,12 @@ const data = [
 export default function DashboardContainer() {
   return (
     <LayoutCustom>
-      <div className="bg-white space-y-4">
+      <div className=" space-y-4">
         <div className="grid grid-cols-4 gap-4">
-          {data.map((res) => (
-            <div className="border p-4 rounded-xl border-mainBorder flex items-center gap-3 bg-mainBg">
+          {data.map((res, i) => (
+            <div
+              key={i}
+              className=" p-4 bg-dynamic  flex items-center gap-3 rounded-xl">
               <div
                 className={cn(
                   "p-3 aspect-square rounded-full shrink-0 text-xl",
@@ -65,7 +68,7 @@ export default function DashboardContainer() {
         </div>
 
         <div className="grid grid-cols-2 gap-4">
-          <div className="p-5 rounded-xl border border-mainBorder space-y-4 max-h-[50vh]">
+          <div className="p-5 rounded-xl  bg-dynamic  space-y-4 max-h-[50vh]">
             <p className="font-semibold flex justify-between items-center">
               Device Activity Overview
               <span className="text-neutral-400 font-normal">
@@ -74,16 +77,16 @@ export default function DashboardContainer() {
             </p>
             <DeviceActivities />
           </div>
-          <div className="p-5 rounded-xl border border-mainBorder space-y-4 max-h-[50vh] relative">
+          <div className="p-5 rounded-xl  bg-dynamic space-y-4 max-h-[50vh] relative">
             <p className="font-semibold">24-Hour Activity Distribution</p>
-            {/* <div className=" border h-full w-full"> */}
+            {/* <div className="  h-full w-full"> */}
             <HoursActivities />
             {/* </div> */}
           </div>
         </div>
 
         <div className="grid grid-cols-2 gap-4">
-          <div className="p-5 rounded-xl border border-mainBorder space-y-4 ">
+          <div className="p-5 rounded-xl  bg-dynamic space-y-4 ">
             <p className="font-semibold flex justify-between items-center">
               Recent Screenshots
             </p>
@@ -143,7 +146,7 @@ export default function DashboardContainer() {
               ))}
             </div>
           </div>
-          <div className="p-5 rounded-xl border border-mainBorder space-y-4">
+          <div className="p-5 rounded-xl  bg-dynamic space-y-4">
             <p className="font-semibold">Top Keywords</p>
             {[
               { word: "general", count: 8 },
@@ -164,16 +167,16 @@ export default function DashboardContainer() {
                   <div className="p-2 bg-blue-50 rounded-full">
                     <FaKey className="text-blue-500 w-4 h-4" />
                   </div>
-                  <span className="text-gray-700 text-sm">{item.word}</span>
+                  <p className=" text-sm">{item.word}</p>
                 </div>
-                <span className="text-gray-600 text-sm">{item.count}x</span>
+                <span className="text-neutral-500 text-sm">{item.count}x</span>
               </div>
             ))}
           </div>
         </div>
 
         <div className="grid grid-cols-2 gap-4">
-          <div className="p-5 rounded-xl border border-mainBorder space-y-4 ">
+          <div className="p-5 rounded-xl  bg-dynamic space-y-4 ">
             <p className="font-semibold flex justify-between items-center">
               Top Applications
             </p>
@@ -216,24 +219,20 @@ export default function DashboardContainer() {
             ].map((item) => (
               <div
                 key={item.id}
-                className="flex justify-between items-start border-b pb-3 last:border-none">
+                className="flex justify-between items-start -b pb-3 last:-none">
                 <div className="flex items-start gap-3">
                   <div className="p-2 bg-green-50 rounded-full flex items-center justify-center">
                     <TbAppsFilled className="text-green-500 w-3 h-3" />
                   </div>
                   <div className="flex flex-col">
-                    <span className="text-sm font-medium text-gray-900">
-                      {item.name}
-                    </span>
-                    <span className="text-xs text-gray-500">
+                    <span className="text-sm font-medium ">{item.name}</span>
+                    <span className="text-xs text-neutral-500">
                       Used {item.used} {item.used > 1 ? "times" : "time"}
                     </span>
                   </div>
                 </div>
                 <div className="flex flex-col items-end">
-                  <span className="text-sm font-medium text-gray-900">
-                    {item.duration}
-                  </span>
+                  <span className="text-sm font-medium ">{item.duration}</span>
                   <span className="text-xs text-green-500 whitespace-nowrap">
                     Active: {item.activeDuration}
                   </span>
@@ -241,7 +240,7 @@ export default function DashboardContainer() {
               </div>
             ))}
           </div>
-          <div className="p-5 rounded-xl border border-mainBorder space-y-4">
+          <div className="p-5 rounded-xl  bg-dynamic space-y-4">
             <p className="font-semibold">Top Websites</p>
             {[
               {
@@ -262,24 +261,22 @@ export default function DashboardContainer() {
             ].map((item) => (
               <div
                 key={item.id}
-                className="flex justify-between items-start border-b pb-3 gap-x-3 last:border-none">
+                className="flex justify-between items-start -b pb-3 gap-x-3 last:-none">
                 <div className="flex items-start gap-3 w-full overflow-hidden ">
                   <div className="p-2 bg-blue-100 rounded-full flex items-center justify-center">
                     <FaGlobe className="text-blue-500 w-4 h-4" />
                   </div>
                   <div className="flex flex-col w-full overflow-hidden">
-                    <span className="text-sm font-medium text-gray-900 truncate">
+                    <span className="text-sm font-medium  truncate">
                       {item.title}
                     </span>
-                    <span className="text-xs text-gray-500 truncate">
+                    <span className="text-xs text-neutral-500 truncate">
                       {item.url}
                     </span>
                   </div>
                 </div>
                 <div className="flex flex-col items-end text-right">
-                  <span className="text-sm font-medium text-gray-900">
-                    {item.duration}
-                  </span>
+                  <span className="text-sm font-medium ">{item.duration}</span>
                   <span className="text-xs text-blue-500">
                     {item.visits} visits
                   </span>
