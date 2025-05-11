@@ -273,3 +273,137 @@ input[type='number'] {
 .ant-select-item-option-active {
   @apply !bg-mainColor/5 dark:!bg-mainColor/10;
 }
+
+/* //table  */
+/* src/styles/main.css */
+/* Update the input styles section */
+
+/* Input styles */
+.ant-input,
+.ant-input-number,
+.ant-select-selector {
+  @apply !bg-mainBgPaper dark:!bg-neutral-800 !border-neutral-200 dark:!border-neutral-700 !text-mainText dark:!text-mainTextDark !rounded-lg;
+}
+
+.ant-input:hover,
+.ant-input-number:hover,
+.ant-select:hover .ant-select-selector {
+  @apply !border-mainColor dark:!border-mainColorLight;
+}
+
+.ant-input:focus,
+.ant-input-number-focused,
+.ant-select-focused .ant-select-selector {
+  @apply !border-mainColor dark:!border-mainColorLight !shadow-none;
+}
+
+.ant-input::placeholder,
+.ant-input-number::placeholder,
+.ant-select-selection-placeholder {
+  @apply !text-mainTextSecondary dark:!text-mainTextDarkSecondary;
+}
+
+.ant-input-disabled,
+.ant-input-number-disabled,
+.ant-select-disabled .ant-select-selector {
+  @apply !bg-neutral-100 dark:!bg-neutral-900 !text-mainTextDisabled dark:!text-mainTextDarkDisabled;
+}
+
+/* Table styles */
+.ant-table {
+  @apply !bg-transparent text-mainText dark:text-mainTextDark;
+}
+
+.ant-table-container {
+  @apply !bg-transparent;
+}
+
+.ant-table-content {
+  @apply !bg-transparent;
+}
+
+/* Header styles */
+.ant-table-thead > tr > th {
+  @apply !bg-neutral-50 dark:!bg-neutral-800 
+         !text-neutral-500 dark:!text-neutral-400 
+         !font-medium !text-xs md:!text-sm !uppercase 
+         !border-neutral-200 dark:!border-neutral-700;
+}
+
+/* Body styles */
+.ant-table-tbody > tr > td {
+  @apply !bg-transparent dark:!bg-neutral-900 
+         !text-mainText dark:!text-mainTextDark 
+         !text-xs md:!text-sm 
+         !border-neutral-200 dark:!border-neutral-700;
+}
+
+/* Hover state */
+.ant-table-tbody > tr:hover > td {
+  @apply !bg-neutral-50 dark:!bg-neutral-800;
+}
+
+/* Selected row */
+.ant-table-tbody > tr.ant-table-row-selected > td {
+  @apply !bg-mainColor/10 dark:!bg-mainColor/20;
+}
+
+.ant-table-tbody > tr.ant-table-row-selected:hover > td {
+  @apply !bg-mainColor/20 dark:!bg-mainColor/30;
+}
+
+/* Link button in table */
+.ant-table .ant-btn-link {
+  @apply !text-mainColor dark:!text-mainColorLight;
+}
+
+/* Tag styles in table */
+/*
+.ant-table .ant-tag {
+  @apply !text-mainTextDark;
+}
+*/
+
+/* Pagination styles */
+.ant-pagination {
+  @apply !mt-4;
+}
+
+.ant-pagination-item {
+  @apply !bg-transparent dark:!bg-neutral-800 
+         !border-neutral-200 dark:!border-neutral-700;
+}
+
+.ant-pagination-item a {
+  @apply !text-mainText dark:!text-mainTextDark;
+}
+
+.ant-pagination-item-active {
+  @apply !border-mainColor dark:!border-mainColorLight;
+}
+
+.ant-pagination-item-active a {
+  @apply !text-mainColor dark:!text-mainColorLight;
+}
+
+.ant-pagination-item:hover {
+  @apply !border-mainColor dark:!border-mainColorLight;
+}
+
+.ant-pagination-prev .ant-pagination-item-link,
+.ant-pagination-next .ant-pagination-item-link {
+  @apply !bg-transparent dark:!bg-neutral-800 
+         !border-neutral-200 dark:!border-neutral-700 
+         !text-mainText dark:!text-mainTextDark;
+}
+
+.ant-pagination-prev:hover .ant-pagination-item-link,
+.ant-pagination-next:hover .ant-pagination-item-link {
+  @apply !border-mainColor dark:!border-mainColorLight 
+         !text-mainColor dark:!text-mainColorLight;
+}
+
+.ant-pagination-disabled .ant-pagination-item-link {
+  @apply !text-neutral-400 dark:!text-neutral-600;
+}
+

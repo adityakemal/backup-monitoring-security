@@ -7,7 +7,6 @@ import Provider from "./lib/provider";
 import dayjs from "dayjs";
 import { useStorageStore } from "./pages/shared/storage.store";
 dayjs.locale("id");
-import "./styles/main.css";
 import colors from "./lib/colors";
 
 if (window.location.hostname !== "localhost") {
@@ -64,22 +63,24 @@ function App() {
   const { mode } = useStorageStore();
 
   useEffect(() => {
-    const htmlElement = document.documentElement;
+    const rootElement = document.getElementById("root");
+    if (!rootElement) return;
     if (mode === "dark") {
-      htmlElement.classList.add("dark");
+      rootElement.classList.add("dark");
     } else {
-      htmlElement.classList.remove("dark");
+      rootElement.classList.remove("dark");
+      rootElement.classList.add("light");
     }
   }, [mode]);
 
   return (
-    <AntdProvider>
-      <div style={objMainColor}>
+    <div style={objMainColor}>
+      <AntdProvider>
         <Provider>
           <RouterProvider router={routes} />
         </Provider>
-      </div>
-    </AntdProvider>
+      </AntdProvider>
+    </div>
   );
 }
 

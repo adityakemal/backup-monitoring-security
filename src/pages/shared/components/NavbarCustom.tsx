@@ -16,16 +16,13 @@ import Hamburger from "hamburger-react";
 import { cn } from "../../../lib/helper";
 import ThemeToggle from "./ThemeToggle";
 import colors from "../../../lib/colors";
+import { memo } from "react";
 
 // import { useState } from "react";
 // import HeaderFilterCustom from "./HeaderFilterCustom";
 
 const { useBreakpoint } = Grid;
-export default function NavbarCustom({
-  disableSidebar,
-}: {
-  disableSidebar?: boolean;
-}) {
+function NavbarCustom({ disableSidebar }: { disableSidebar?: boolean }) {
   const { handleLogout, role, fullname, email } = useStorageStore();
   const { sm } = useBreakpoint();
 
@@ -88,7 +85,7 @@ export default function NavbarCustom({
       }}>
       <div
         className={cn(
-          `flex  justify-between items-center w-full  h-full pl-3 pr-6 md:pl-6 border-b border-neutral-200 dark:border-neutral-800`,
+          `flex  justify-between items-center w-full  h-full pl-3 pr-6 md:pl-6 border-b border-neutral-200 dark:border-neutral-800 !border-dashed`,
           mode === "dark" ? "!bg-mainBgDark" : "!bg-neutral-50"
           // disableSidebar ? "!bg-white " : "!bg-white"
         )}>
@@ -187,3 +184,5 @@ export default function NavbarCustom({
     </Header>
   );
 }
+
+export default memo(NavbarCustom);

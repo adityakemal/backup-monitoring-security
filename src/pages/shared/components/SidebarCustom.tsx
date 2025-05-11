@@ -4,7 +4,13 @@ import { BarChartOutlined } from "@ant-design/icons";
 import { useNavigate } from "react-router-dom";
 import { acceptablePathList } from "../../../lib/routes";
 import { GrUserSettings } from "react-icons/gr";
-import { AiFillSecurityScan } from "react-icons/ai";
+import {
+  RiBarChart2Line,
+  RiSettings4Line,
+  RiSettingsLine,
+  RiUserSearchLine,
+} from "react-icons/ri";
+
 import LogoCustom from "./LogoCustom";
 import { cn } from "../../../lib/helper";
 import { useStorageStore } from "../storage.store";
@@ -57,7 +63,12 @@ export default function SidebarCustom({
     getItem(
       "Dashboard",
       "/dashboard",
-      <BarChartOutlined className="text-mainText dark:text-mainTextDark" />
+      <RiBarChart2Line className="text-mainText dark:text-mainTextDark" />
+    ),
+    getItem(
+      "User Monitoring",
+      "/user-monitoring",
+      <RiUserSearchLine className="text-mainText dark:text-mainTextDark" />
     ),
     // getItem("Task Management", "sub_1", <AuditOutlined />, [
     //   getItem("Mantri Task", "/task", null),
@@ -81,7 +92,7 @@ export default function SidebarCustom({
     getItem(
       "Setting",
       "/setting",
-      <GrUserSettings className="text-mainText dark:text-mainTextDark" />
+      <RiSettings4Line className="text-mainText dark:text-mainTextDark" />
     ),
   ];
 
@@ -109,7 +120,7 @@ export default function SidebarCustom({
   return (
     <Sider
       className={cn(
-        `min-h-screen border-r border-neutral-200 dark:border-neutral-800`,
+        `min-h-screen border-r border-neutral-200 dark:border-neutral-800 !border-dashed`,
         disableSidebar ? "hidden" : "",
         mode !== "light" ? "!bg-mainBgDark" : "!bg-neutral-50"
       )}

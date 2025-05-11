@@ -1,11 +1,11 @@
-import dayjs from 'dayjs';
-import { DatePicker as DatePickerAntd, Input, Modal } from 'antd';
-import { useIsMobile } from '../../../hooks/useIsMobile';
-import { DateRange } from 'react-date-range';
-import 'react-date-range/dist/styles.css'; // main css file
-import 'react-date-range/dist/theme/default.css'; // theme css file
-import { useState } from 'react';
-import { CalendarOutlined } from '@ant-design/icons';
+import dayjs from "dayjs";
+import { DatePicker as DatePickerAntd, Input, Modal } from "antd";
+import { useIsMobile } from "../../../hooks/useIsMobile";
+import { DateRange } from "react-date-range";
+import "react-date-range/dist/styles.css"; // main css file
+import "react-date-range/dist/theme/default.css"; // theme css file
+import { useState } from "react";
+import { CalendarOutlined } from "@ant-design/icons";
 const { RangePicker } = DatePickerAntd;
 
 interface HeaderFilterCustomProps {
@@ -19,24 +19,24 @@ export default function HeaderFilterCustom({
   dateRangeValue,
   handleDateRange,
 }: HeaderFilterCustomProps) {
-  const dateFormat = 'DD MMMM YYYY';
+  const dateFormat = "DD MMMM YYYY";
   const isMobile = useIsMobile();
 
   // Preset tanggal untuk desktop
   const rangePresets: any = [
-    { label: 'Last 7 Days', value: [dayjs().subtract(7, 'day'), dayjs()] },
-    { label: 'Last 14 Days', value: [dayjs().subtract(14, 'day'), dayjs()] },
-    { label: 'Last 30 Days', value: [dayjs().subtract(30, 'day'), dayjs()] },
-    { label: 'Last 90 Days', value: [dayjs().subtract(90, 'day'), dayjs()] },
+    { label: "Last 7 Days", value: [dayjs().subtract(7, "day"), dayjs()] },
+    { label: "Last 14 Days", value: [dayjs().subtract(14, "day"), dayjs()] },
+    { label: "Last 30 Days", value: [dayjs().subtract(30, "day"), dayjs()] },
+    { label: "Last 90 Days", value: [dayjs().subtract(90, "day"), dayjs()] },
   ];
 
   // Handler untuk Ant Design RangePicker (Desktop)
   const onRangeChange = (dates: any) => {
     if (dates) {
       handleDateRange(dates);
-      console.log('====================================');
+      console.log("====================================");
       console.log(dates);
-      console.log('====================================');
+      console.log("====================================");
     } else {
       handleDateRange([]);
     }
@@ -50,12 +50,12 @@ export default function HeaderFilterCustom({
           <Input
             readOnly
             onClick={() => setIsModalOpenRange(true)}
-            className="w-full text-sm text-gray-500 "
+            // className="w-full text-sm text-gray-500 "
             suffix={<CalendarOutlined />}
             size="large"
             value={`${dayjs(dateRangeValue[0]).format(
-              'DD MMMM YYYY',
-            )} - ${dayjs(dateRangeValue[1]).format('DD MMMM YYYY')}`}
+              "DD MMMM YYYY"
+            )} - ${dayjs(dateRangeValue[1]).format("DD MMMM YYYY")}`}
           />
           <Modal
             styles={{
@@ -66,8 +66,7 @@ export default function HeaderFilterCustom({
             title="Pilih Tanggal"
             footer={null}
             open={isModalOpenRange}
-            onCancel={() => setIsModalOpenRange(false)}
-          >
+            onCancel={() => setIsModalOpenRange(false)}>
             <div className="flex items-center justify-center pb-6">
               <DateRange
                 scroll={{ enabled: true, calendarHeight: 230 }}
@@ -75,7 +74,7 @@ export default function HeaderFilterCustom({
                   {
                     startDate: dateRangeValue[0],
                     endDate: dateRangeValue[1],
-                    key: 'selection',
+                    key: "selection",
                   },
                 ]}
                 showDateDisplay={false}
@@ -96,13 +95,13 @@ export default function HeaderFilterCustom({
         </div>
       ) : (
         <RangePicker
-          className={`w-full rangepicker-filter ${className}`}
+          className={`w-full  dark:!bg-neutral-800 ${className}`}
           presets={rangePresets}
           onChange={onRangeChange}
           value={dateRangeValue}
           size="large"
           format={dateFormat}
-          disabledDate={(current) => current && current.isAfter(dayjs(), 'day')}
+          disabledDate={(current) => current && current.isAfter(dayjs(), "day")}
           allowClear={false}
           placement="bottomLeft"
           showNow

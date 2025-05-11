@@ -1,20 +1,13 @@
-import {
-  BsActivity,
-  BsApp,
-  BsDeviceSsd,
-  BsFileCheck,
-  BsUsb,
-} from "react-icons/bs";
+import { BsActivity, BsDeviceSsd, BsFileCheck, BsUsb } from "react-icons/bs";
 
 import LayoutCustom from "../shared/components/LayoutCustom";
 
 import { cn } from "../../lib/helper";
 import DeviceActivities from "./components/DeviceActivities";
 import HoursActivities from "./components/HoursActivities";
-import { FaAppStore, FaGlobe, FaKey, FaMinus, FaSquare } from "react-icons/fa";
+import { FaGlobe, FaKey } from "react-icons/fa";
 import { Image } from "antd";
 import { TbAppsFilled } from "react-icons/tb";
-import CustomBox from "../shared/components/CustomBox";
 
 const data = [
   {
@@ -79,9 +72,8 @@ export default function DashboardContainer() {
           </div>
           <div className="p-5 rounded-xl  bg-dynamic space-y-4 max-h-[50vh] relative">
             <p className="font-semibold">24-Hour Activity Distribution</p>
-            {/* <div className="  h-full w-full"> */}
+
             <HoursActivities />
-            {/* </div> */}
           </div>
         </div>
 
@@ -219,7 +211,7 @@ export default function DashboardContainer() {
             ].map((item) => (
               <div
                 key={item.id}
-                className="flex justify-between items-start -b pb-3 last:-none">
+                className="flex justify-between items-start pb-3 last:-none">
                 <div className="flex items-start gap-3">
                   <div className="p-2 bg-green-50 rounded-full flex items-center justify-center">
                     <TbAppsFilled className="text-green-500 w-3 h-3" />
@@ -261,7 +253,7 @@ export default function DashboardContainer() {
             ].map((item) => (
               <div
                 key={item.id}
-                className="flex justify-between items-start -b pb-3 gap-x-3 last:-none">
+                className="flex justify-between items-start pb-3 gap-x-3 last:-none">
                 <div className="flex items-start gap-3 w-full overflow-hidden ">
                   <div className="p-2 bg-blue-100 rounded-full flex items-center justify-center">
                     <FaGlobe className="text-blue-500 w-4 h-4" />

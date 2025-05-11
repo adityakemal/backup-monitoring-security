@@ -3,17 +3,19 @@ import { ReactNode } from "react";
 
 import colors from "./colors";
 import { useStorageStore } from "../pages/shared/storage.store";
+import "../styles/main.css";
 
 export default function AntdProvider({ children }: { children: ReactNode }) {
   const { mode } = useStorageStore();
 
   return (
     <ConfigProvider
+      key={mode} // <-- Add this line!
       theme={{
-        // algorithm:
-        //   mode === "dark"
-        //     ? antdTheme.darkAlgorithm
-        //     : antdTheme.defaultAlgorithm,
+        algorithm:
+          mode === "dark"
+            ? antdTheme.darkAlgorithm
+            : antdTheme.defaultAlgorithm,
         token: {
           // Primary Colors
           colorPrimary: colors.primary.main,
@@ -74,7 +76,32 @@ export default function AntdProvider({ children }: { children: ReactNode }) {
             colorPrimaryTextActive: colors.primary.contrast,
           },
           DatePicker: {
-            inputFontSize: 12,
+            // inputFontSize: 12,
+            // colorBgContainer:
+            //   mode === "dark" ? colors.neutral[800] : colors.background.paper,
+            // colorText:
+            //   mode === "dark" ? colors.text.dark.primary : colors.text.primary,
+            // colorTextPlaceholder:
+            //   mode === "dark"
+            //     ? colors.text.dark.secondary
+            //     : colors.text.secondary,
+            // colorBorder:
+            //   mode === "dark" ? colors.border.dark : colors.border.main,
+            // colorBgElevated:
+            //   mode === "dark" ? colors.neutral[900] : colors.background.paper,
+            // colorIcon:
+            //   mode === "dark" ? colors.text.dark.primary : colors.text.primary,
+            // colorIconHover:
+            //   mode === "dark" ? colors.primary.light : colors.primary.main,
+            // colorPrimary: colors.primary.main,
+            // colorPrimaryHover: colors.primary.light,
+            // colorPrimaryActive: colors.primary.dark,
+            // colorTextDisabled:
+            //   mode === "dark"
+            //     ? colors.text.dark.disabled
+            //     : colors.text.disabled,
+            // colorBgContainerDisabled:
+            //   mode === "dark" ? colors.neutral[900] : colors.neutral[100],
           },
           Form: {
             verticalLabelPadding: "0 0 2px",
@@ -119,13 +146,6 @@ export default function AntdProvider({ children }: { children: ReactNode }) {
             paddingBlock: 8,
             paddingInline: 12,
             fontSize: 14,
-            // Hover state
-            // colorBorderHover:
-            //   mode === "dark" ? colors.primary.light : colors.primary.main,
-            // Focus state
-            // colorBorderActive:
-            //   mode === "dark" ? colors.primary.light : colors.primary.main,
-            // Disabled state
             colorBgContainerDisabled:
               mode === "dark" ? colors.neutral[900] : colors.neutral[100],
             colorTextDisabled:
@@ -148,13 +168,6 @@ export default function AntdProvider({ children }: { children: ReactNode }) {
             paddingBlock: 8,
             paddingInline: 12,
             fontSize: 14,
-            // Hover state
-            // colorBorderHover:
-            // mode === "dark" ? colors.primary.light : colors.primary.main,
-            // Focus state
-            // colorBorderActive:
-            //   mode === "dark" ? colors.primary.light : colors.primary.main,
-            // Disabled state
             colorBgContainerDisabled:
               mode === "dark" ? colors.neutral[900] : colors.neutral[100],
             colorTextDisabled:
@@ -174,16 +187,7 @@ export default function AntdProvider({ children }: { children: ReactNode }) {
                 ? colors.text.dark.secondary
                 : colors.text.secondary,
             borderRadius: 8,
-            // paddingBlock: 8,
-            // paddingInline: 12,
             fontSize: 14,
-            // Hover state
-            // colorBorderHover:
-            //   mode === "dark" ? colors.primary.light : colors.primary.main,
-            // Focus state
-            // colorBorderActive:
-            //   mode === "dark" ? colors.primary.light : colors.primary.main,
-            // Disabled state
             colorBgContainerDisabled:
               mode === "dark" ? colors.neutral[900] : colors.neutral[100],
             colorTextDisabled:

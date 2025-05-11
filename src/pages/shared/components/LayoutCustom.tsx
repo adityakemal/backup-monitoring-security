@@ -17,10 +17,10 @@ const { useBreakpoint } = Grid;
 const LayoutCustom = ({ children, disableSidebar }: ILayoutCustomProps) => {
   const { collapsed } = useSharedStore();
   const { sm } = useBreakpoint();
-  const { mode } = useStorageStore();
+  // const { mode } = useStorageStore();
 
   return (
-    <Layout className={cn("!m-0 !p-0 !w-full ", mode)}>
+    <Layout className={cn("!m-0 !p-0 !w-full ")}>
       <SidebarCustom disableSidebar={disableSidebar} />
       <Layout className="!pb-0 h-dvh">
         <NavbarCustom disableSidebar={disableSidebar} />

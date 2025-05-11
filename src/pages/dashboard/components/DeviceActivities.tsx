@@ -35,84 +35,52 @@ const dataSource = [
 
 const columns: any = [
   {
-    title: (
-      <span className="text-gray-500 !text-xs whitespace-nowrap">
-        DEVICE ID
-      </span>
-    ),
+    title: "DEVICE ID",
     dataIndex: "deviceId",
     key: "deviceId",
-    render: (text: string) => (
-      <div className="text-gray-700 text-xs">{text}</div>
-    ),
   },
   {
-    title: (
-      <span className="text-gray-500 !text-xs whitespace-nowrap">
-        ACTIVITIES
-      </span>
-    ),
+    title: "ACTIVITIES",
     dataIndex: "activities",
     key: "activities",
     render: (activities: any) => (
       <div className="flex flex-col gap-1">
-        <div className="text-main font-bold ">{activities.total}</div>
-        <div className="grid grid-cols-3 items-center gap-2 font-mono text-xs text-gray-500 w-fit">
-          <span className=" whitespace-nowrap">
+        <div className="font-bold">{activities.total}</div>
+        <div className="grid grid-cols-3 items-center gap-2 font-mono w-fit">
+          <span className="whitespace-nowrap">
             🎯 {activities.detail.target}
           </span>
-
-          <span className=" whitespace-nowrap">
+          <span className="whitespace-nowrap">
             📱 {activities.detail.mobile}
           </span>
-
-          <span className=" whitespace-nowrap">🌐 {activities.detail.web}</span>
-
-          <span className=" whitespace-nowrap">
+          <span className="whitespace-nowrap">🌐 {activities.detail.web}</span>
+          <span className="whitespace-nowrap">
             📁 {activities.detail.folder}
           </span>
-
-          <span className=" whitespace-nowrap">
-            🔌 {activities.detail.plug}
-          </span>
+          <span className="whitespace-nowrap">🔌 {activities.detail.plug}</span>
         </div>
       </div>
     ),
   },
   {
-    title: (
-      <span className="text-gray-500 !text-xs whitespace-nowrap">FLAGGED</span>
-    ),
+    title: "FLAGGED",
     dataIndex: "flagged",
     align: "center",
     key: "flagged",
-    render: (flagged: number) =>
-      flagged > 0 ? (
-        <Tag color="red" className=" ">
-          {flagged}
-        </Tag>
+    render: (_: any, record: any) =>
+      record.flagged > 0 ? (
+        <Tag color="red">{record.flagged}</Tag>
       ) : (
-        <Tag color="green" className=" ">
-          {flagged}
-        </Tag>
+        <Tag color="green">{record.flagged}</Tag>
       ),
   },
   {
-    title: (
-      <span className="text-gray-500 !text-xs whitespace-nowrap">
-        LAST SEEN
-      </span>
-    ),
+    title: "LAST SEEN",
     dataIndex: "lastSeen",
     key: "lastSeen",
-    render: (text: string) => (
-      <div className="text-gray-500 text-xs">{text}</div>
-    ),
   },
   {
-    title: (
-      <span className="text-gray-500 !text-xs whitespace-nowrap">DETAILS</span>
-    ),
+    title: "DETAILS",
     key: "details",
     render: () => <Button type="link">Details</Button>,
   },
@@ -123,7 +91,7 @@ export default function DeviceTable() {
     <Table
       dataSource={dataSource}
       size="small"
-      bordered
+      // bordered
       columns={columns}
       pagination={false}
     />

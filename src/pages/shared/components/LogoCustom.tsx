@@ -10,11 +10,11 @@ function LogoCustom({ className }: { className?: string }) {
     <p
       className={cn(
         `text-3xl !font-bold uppercase leading-6 tracking-tighter ${className}`,
-        mode === "dark" ? "text-neutral-50" : `!text-[var(--main-color)]`
+        mode === "dark" ? "text-neutral-50" : `!text-mainColor`
       )}>
-      Employee Security <br />
+      Employee Monitoring <br />
       <span className=" flex items-center gap-x-1">
-        Monitor
+        System
         {/* <AiFillSecurityScan /> */}
       </span>
     </p>

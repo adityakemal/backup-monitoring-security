@@ -15,7 +15,7 @@ export default function ThemeToggle() {
         checkedChildren={
           <MoonOutlined
             style={{
-              color: colors.primary.main,
+              color: colors.primary.contrast,
             }}
           />
         }
@@ -26,7 +26,7 @@ export default function ThemeToggle() {
             }}
           />
         }
-        className="!bg-mainColor dark:!bg-mainColorContrast "
+        className="!bg-mainColor dark:!bg-neutral-800 "
       />
     </div>
   );

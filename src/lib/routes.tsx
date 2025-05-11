@@ -11,6 +11,7 @@ import OtpVerifyContainer from "../pages/auth/OtpVerifyContainer";
 import CongratPage from "../pages/auth/components/Congratulation";
 import NewPasswordContainer from "../pages/auth/NewPasswordContainer";
 import DashboardContainer from "../pages/dashboard/DashboardContainer";
+import UserMonitoringContainer from "../pages/userMonitoring/UserMonitoringContainer";
 // import UserManagementContainer from '../pages/userManagement/UserManagementContainer';
 
 const { role } = useStorageStore.getState();
@@ -24,6 +25,11 @@ const superAdminRoutes = [
   {
     path: "/dashboard",
     element: <DashboardContainer />,
+    onlyAccessBy: "auth",
+  },
+  {
+    path: "/user-monitoring",
+    element: <UserMonitoringContainer />,
     onlyAccessBy: "auth",
   },
 ];

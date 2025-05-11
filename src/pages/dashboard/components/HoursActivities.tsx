@@ -9,6 +9,7 @@ import {
 } from "recharts";
 import theme from "../../../lib/colors";
 import colors from "../../../lib/colors";
+import { useStorageStore } from "../../shared/storage.store";
 
 const data = [
   { time: "00:00", activity: 5 },
@@ -37,22 +38,36 @@ const data = [
   { time: "23:00", activity: 5 },
 ];
 export default function HoursActivities() {
+  const { mode } = useStorageStore();
+
   return (
     <ResponsiveContainer width="100%" height="90%">
       <LineChart
         data={data}
         margin={{ top: 0, right: 10, left: -35, bottom: 0 }}>
-        <CartesianGrid strokeDasharray="3 3" />
+        <CartesianGrid strokeDasharray="3 3" vertical={false} />
         <XAxis
           dataKey="time"
           angle={-45}
           textAnchor="end"
-          interval={1}
+          interval={0} // <-- Show all labels
           height={60}
           tick={{ fontSize: 12, fill: "#9ca3af" }}
         />
         <YAxis tick={{ fontSize: 12, fill: "#9ca3af" }} allowDecimals={false} />
-        <Tooltip />
+        <Tooltip
+          contentStyle={{
+            background: mode === "dark" ? "#18181b" : "#fff",
+            border: "1px solid #444",
+            color: mode === "dark" ? "#fff" : "#222",
+          }}
+          itemStyle={{
+            color: mode === "dark" ? "#fff" : "#222",
+          }}
+          labelStyle={{
+            color: mode === "dark" ? "#fff" : "#222",
+          }}
+        />
         <Line
           type="monotone"
           dataKey="activity"
