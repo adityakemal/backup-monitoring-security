@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import ReactDOM from "react-dom/client";
+import "./styles/main.css";
 import { RouterProvider } from "react-router-dom";
 import routes from "./lib/routes";
 import AntdProvider from "./lib/AntdProvider";

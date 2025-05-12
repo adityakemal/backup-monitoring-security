@@ -3,7 +3,6 @@ import { ReactNode } from "react";
 
 import colors from "./colors";
 import { useStorageStore } from "../pages/shared/storage.store";
-import "../styles/main.css";
 
 export default function AntdProvider({ children }: { children: ReactNode }) {
   const { mode } = useStorageStore();
@@ -197,7 +196,8 @@ export default function AntdProvider({ children }: { children: ReactNode }) {
           },
           // Add more component customizations as needed
         },
-      }}>
+      }}
+    >
       {children}
     </ConfigProvider>
   );

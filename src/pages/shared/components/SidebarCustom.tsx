@@ -1,13 +1,10 @@
 import { Grid, Layout, Menu } from "antd";
 import { useSharedStore } from "../shared.store";
-import { BarChartOutlined } from "@ant-design/icons";
 import { useNavigate } from "react-router-dom";
 import { acceptablePathList } from "../../../lib/routes";
-import { GrUserSettings } from "react-icons/gr";
 import {
   RiBarChart2Line,
   RiSettings4Line,
-  RiSettingsLine,
   RiUserSearchLine,
 } from "react-icons/ri";
 
@@ -94,6 +91,9 @@ export default function SidebarCustom({
       "/setting",
       <RiSettings4Line className="text-mainText dark:text-mainTextDark" />
     ),
+    {
+      type: "divider", // Must have
+    },
   ];
 
   const { collapsed, setCollapsed, setOpenKeys, openKeys } = useSharedStore();
@@ -124,24 +124,22 @@ export default function SidebarCustom({
         disableSidebar ? "hidden" : "",
         mode !== "light" ? "!bg-mainBgDark" : "!bg-neutral-50"
       )}
-      // theme={mode === "dark" ? "dark" : "light"}
       width={disableSidebar ? 0 : 230}
-      // collapsible
       breakpoint="md"
       collapsedWidth={xs ? 0 : disableSidebar ? 0 : 71}
-      // collapsedWidth={0}
       collapsed={collapsed}
-      onCollapse={(value) => setCollapsed(value)}>
+      onCollapse={(value) => setCollapsed(value)}
+    >
       <div
         className={`w-full flex px-6 items-center justify-center pt-6 mb-6 ${
           collapsed && " hidden"
-        } `}>
+        } `}
+      >
         <div className="flex items-center justify-center w-fit space-x-2">
           {/* <img src="/img/bri.png" className=" object-contain h-12" alt="logo bri" /> */}
           <LogoCustom />
         </div>
       </div>
-      {/* <p className="text-4xl text-center pt-6">logo</p> */}
       <Menu
         className={cn(
           "mt-2 !bg-neutral-50",

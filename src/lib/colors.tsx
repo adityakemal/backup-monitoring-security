@@ -57,9 +57,9 @@ export default {
 
   // Background Colors
   background: {
-    default: "#FAFAFA", // Light mode background
+    default: "#ffffff", // Light mode background
     paper: "#FFFFFF", // Card/Paper background
-    dark: "#030712", // Dark mode background
+    dark: "#1A1A1A", // Dark mode background
   },
 
   // Text Colors

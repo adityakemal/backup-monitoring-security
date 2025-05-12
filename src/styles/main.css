@@ -79,7 +79,7 @@
     }
 
     .bg-dynamic {
-      @apply !bg-mainBg;
+      @apply !bg-mainBg border border-neutral-200 dark:!border-neutral-700 shadow-actionHover;
     }
 
     .bg-dynamicBase {
@@ -107,7 +107,7 @@
       }
 
       .bg-dynamic {
-        @apply !bg-neutral-800; /* Changed to a slightly lighter shade for contrast */
+        @apply !bg-neutral-800 border-0 shadow-none; /* Changed to a slightly lighter shade for contrast */
       }
      
 
