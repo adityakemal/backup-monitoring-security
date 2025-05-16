@@ -120,7 +120,7 @@ export default function SidebarCustom({
   return (
     <Sider
       className={cn(
-        `min-h-screen border-r border-neutral-200 dark:border-neutral-800 !border-dashed`,
+        `min-h-screen border-r border-neutral-200 dark:border-neutral-700 !border-dashed`,
         disableSidebar ? "hidden" : "",
         mode !== "light" ? "!bg-mainBgDark" : "!bg-neutral-50"
       )}

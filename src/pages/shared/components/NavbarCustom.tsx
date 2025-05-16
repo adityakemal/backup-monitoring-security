@@ -54,7 +54,8 @@ function NavbarCustom({ disableSidebar }: { disableSidebar?: boolean }) {
           danger
           icon={<IoLogOut size={16} />}
           className=" w-full"
-          onClick={handleLogout}>
+          onClick={handleLogout}
+        >
           Log Out
         </Button>
       ),
@@ -82,13 +83,15 @@ function NavbarCustom({ disableSidebar }: { disableSidebar?: boolean }) {
         margin: 0,
         background: "inherit",
         // height: "3.5rem",
-      }}>
+      }}
+    >
       <div
         className={cn(
-          `flex  justify-between items-center w-full  h-full pl-3 pr-6 md:pl-6 border-b border-neutral-200 dark:border-neutral-800 !border-dashed`,
+          `flex  justify-between items-center w-full  h-full pl-3 pr-6 md:pl-6 border-b border-neutral-200 dark:border-neutral-700 !border-dashed`,
           mode === "dark" ? "!bg-mainBgDark" : "!bg-neutral-50"
           // disableSidebar ? "!bg-white " : "!bg-white"
-        )}>
+        )}
+      >
         <div className="flex items-center gap-x-6">
           {!disableSidebar ? (
             <Hamburger
@@ -129,7 +132,8 @@ function NavbarCustom({ disableSidebar }: { disableSidebar?: boolean }) {
             menu={{
               items: itemsMenu,
             }}
-            className={` cursor-pointer ${!collapsed && !sm && "hidden"}`}>
+            className={` cursor-pointer ${!collapsed && !sm && "hidden"}`}
+          >
             <div className="flex items-center gap-x-3">
               <div className="flex flex-col items-end space-y-0">
                 <p
@@ -140,7 +144,8 @@ function NavbarCustom({ disableSidebar }: { disableSidebar?: boolean }) {
                         ? "text-mainTextDarkSecondary"
                         : "text-mainTextSecondary"
                       : "text-white"
-                  )}>
+                  )}
+                >
                   {fullname}
                 </p>
 
@@ -149,7 +154,8 @@ function NavbarCustom({ disableSidebar }: { disableSidebar?: boolean }) {
                   <span
                     className={`${
                       disableSidebar ? "text-white" : "text-main"
-                    } font-semibold`}>
+                    } font-semibold`}
+                  >
                     {role}
                   </span>
                 </div>

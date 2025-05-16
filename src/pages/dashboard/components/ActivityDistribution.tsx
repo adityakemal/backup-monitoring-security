@@ -21,10 +21,10 @@ const ActivityDistribution = ({ data }: ActivityDistributionProps) => {
   return (
     <div className="p-5 rounded-xl bg-dynamic space-y-4 max-h-[50vh] relative">
       <p className="font-semibold">Activity Distribution</p>
-      <ResponsiveContainer width="100%" height="90%">
+      <ResponsiveContainer width="100%" height="95%">
         <LineChart
           data={data}
-          margin={{ top: 0, right: 10, left: -35, bottom: 0 }}
+          margin={{ top: 0, right: 10, left: -30, bottom: 0 }}
         >
           <CartesianGrid strokeDasharray="3 3" vertical={false} />
           <XAxis
@@ -55,7 +55,9 @@ const ActivityDistribution = ({ data }: ActivityDistributionProps) => {
           <Line
             type="monotone"
             dataKey="count"
-            stroke={colors.primary.main}
+            stroke={
+              mode === "dark" ? colors.primary.contrast : colors.primary.main
+            }
             strokeWidth={2}
             dot={{ r: 3 }}
             activeDot={{ r: 6 }}

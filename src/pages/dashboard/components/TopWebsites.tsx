@@ -28,7 +28,7 @@ const TopWebsites = ({ websites }: TopWebsitesProps) => {
           </div>
           <div className="flex flex-col items-end text-right">
             <span className="text-sm font-medium ">{item.total_duration}s</span>
-            <span className="text-xs text-blue-500">
+            <span className="text-xs text-blue-500 whitespace-nowrap">
               {item.visit_count} visits
             </span>
           </div>

@@ -24,10 +24,10 @@ export default function ActivityDistributionOveriew({
   return (
     <div className="p-5 rounded-xl bg-dynamic space-y-4 max-h-[50vh] relative">
       <p className="font-semibold">24-Hour Activity Distribution</p>
-      <ResponsiveContainer width="100%" height="90%">
+      <ResponsiveContainer width="100%" height="100%">
         <LineChart
           data={data}
-          margin={{ top: 0, right: 10, left: -35, bottom: 0 }}
+          margin={{ top: 0, right: 0, left: 100, bottom: 0 }}
         >
           <CartesianGrid strokeDasharray="3 3" vertical={false} />
           <XAxis
@@ -58,7 +58,9 @@ export default function ActivityDistributionOveriew({
           <Line
             type="monotone"
             dataKey="count"
-            stroke={colors.primary.main}
+            stroke={
+              mode === "dark" ? colors.primary.main : colors.primary.contrast
+            }
             strokeWidth={2}
             dot={{ r: 3 }}
             activeDot={{ r: 6 }}

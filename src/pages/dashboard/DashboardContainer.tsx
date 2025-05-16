@@ -53,6 +53,7 @@ const DashboardContainer = () => {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           <DeviceActivityOverview
             overview={dashboardResponse?.overview || null}
+            deviceStatus={dashboardResponse?.device_stats || []}
           />
           <ActivityDistribution
             data={dashboardResponse?.activity_distribution || []}
