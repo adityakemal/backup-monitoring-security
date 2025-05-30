@@ -5,7 +5,7 @@ import FlaggedSummary from "./components/FlaggedSummary";
 
 import UserFilters from "./components/UserFilters";
 
-export default function UserMonitoringContainer() {
+export default function EmployeeMonitoringContainer() {
   return (
     <LayoutCustom>
       <div className=" space-y-4">

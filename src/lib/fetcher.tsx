@@ -7,15 +7,20 @@ import { useStorageStore } from "../pages/shared/storage.store";
 const { token, refresh_token, handleRefreshToken, handleLogout } =
   useStorageStore.getState();
 
-//add base url
+//add base url for main API
 const request = axios.create({
   baseURL: import.meta.env.VITE_URL_API,
 });
 
-//ADD TOKEN
+//add base url for auth API
+const authRequest = axios.create({
+  baseURL: import.meta.env.VITE_URL_API_AUTH,
+});
+
+//ADD TOKEN to both request instances
 if (token) {
   request.defaults.headers.common["Authorization"] = `Bearer ${token}`;
-  // console.log(JSON?.parse(myCookie)?.token);
+  authRequest.defaults.headers.common["Authorization"] = `Bearer ${token}`;
 }
 
 //IF TOKEN EXPIRED / 401
@@ -31,26 +36,28 @@ request.interceptors.response.use(
       const originalRequest = error.config;
 
       if (isExpired && !originalRequest._retry) {
-        // let refreshToken = myCookie && JSON?.parse(myCookie)?.refresh_token;
+        originalRequest._retry = true;
 
         try {
-          const response = await axios.post(
-            `${import.meta.env.VITE_URL_API}/auth/refresh/`,
-            {
-              refresh_token: refresh_token,
-            }
-          );
+          const response = await authRequest.post(`/auth/token/refresh/`, {
+            refresh: refresh_token,
+          });
           //set token
-          handleRefreshToken(response.data);
+          console.log(response, "response from refresh token");
+
+          await handleRefreshToken({
+            token: response.data.access,
+            refresh_token: response.data.refresh,
+          });
           //set header with new token
-          originalRequest.headers.Authorization = `Bearer ${response.data.token}`;
-          //retrun to original request
+          originalRequest.headers.Authorization = `Bearer ${response.data.access}`;
+          //return to original request
           return axios(originalRequest);
         } catch (error: any) {
           console.log("error refresh token");
-          // console.log("refresh token error", error);
           Modal.error({
             title: "Error",
+            maskClosable: false,
             onOk: () => {
               handleLogout();
             },
@@ -66,6 +73,7 @@ request.interceptors.response.use(
       } else {
         Modal.error({
           title: "Error",
+          maskClosable: false,
           onOk: () => {
             handleLogout();
           },
@@ -85,10 +93,8 @@ request.interceptors.response.use(
 export const fetcherPOST = async (url: string, data: any) => {
   try {
     const response = await request.post(url, data);
-    // console.log(response.data);
     return Promise.resolve(response.data);
   } catch (error) {
-    // console.log(error.response, "form fetcher");
     return Promise.reject(error);
   }
 };
@@ -96,10 +102,8 @@ export const fetcherPOST = async (url: string, data: any) => {
 export const fetcherDelete = async (url: string, data: any) => {
   try {
     const response = await request.delete(url, data);
-    // console.log(response.data);
     return Promise.resolve(response.data);
   } catch (error) {
-    // console.log(error.response, "form fetcher");
     return Promise.reject(error);
   }
 };
@@ -110,10 +114,8 @@ export const fetcherGET = async (url: string, params: any) => {
     const response = await request.get(url, {
       params: params || null,
     });
-    // console.log(response);
     return Promise.resolve(response.data);
   } catch (error) {
-    // console.log(error.response, "form fetcher");
     return Promise.reject(error);
   }
 };
@@ -121,20 +123,38 @@ export const fetcherGET = async (url: string, params: any) => {
 export const fetcherPUT = async (url: string, data: any) => {
   try {
     const response = await request.put(url, data);
-    // console.log(response);
     return Promise.resolve(response.data);
   } catch (error) {
-    // console.log(error.response, "form fetcher");
     return Promise.reject(error);
   }
 };
+
 export const fetcherPATCH = async (url: string, data: any) => {
   try {
     const response = await request.patch(url, data);
-    // console.log(response);
     return Promise.resolve(response.data);
   } catch (error) {
-    // console.log(error.response, "form fetcher");
+    return Promise.reject(error);
+  }
+};
+
+// Auth API fetchers
+export const authFetcherPOST = async (url: string, data: any) => {
+  try {
+    const response = await authRequest.post(url, data);
+    return Promise.resolve(response.data);
+  } catch (error) {
+    return Promise.reject(error);
+  }
+};
+
+export const authFetcherGET = async (url: string, params: any) => {
+  try {
+    const response = await authRequest.get(url, {
+      params: params || null,
+    });
+    return Promise.resolve(response.data);
+  } catch (error) {
     return Promise.reject(error);
   }
 };

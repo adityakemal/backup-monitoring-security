@@ -14,19 +14,21 @@ export default function FormLogin() {
   const handleSubmit = async (value: any) => {
     try {
       // const res: any = await postLogin(value);
-      if ("personal_number" in value) {
-        notification.success({ message: "Login Berhasil" });
+      console.log(value);
 
-        setTimeout(() => {
-          handleToken({
-            token: "dummy token",
-            full_name: "Super Admin",
-            email: "superadmin@mail.com",
-            role: "superadmin",
-          });
-          // handleToken(res);
-        }, 1000);
-      }
+      // notification.success({ message: "Login Berhasil" });
+      const res: any = await postLogin(value);
+      console.log(res);
+      handleToken({
+        token: res.access,
+        full_name: value.email,
+        email: value.email,
+        role: "superadmin",
+        refresh_token: res.refresh,
+      });
+      // setTimeout(() => {
+      // }, 1000);
+      // handleToken(res);
     } catch (error: any) {
       console.log(error.response);
       Modal.error({
@@ -38,20 +40,16 @@ export default function FormLogin() {
 
   const dataForm = [
     {
-      name: "personal_number",
-      label: "Personal Number",
+      name: "email",
+      label: "Email",
       type: "text",
-      placeholder: "Personal Number",
+      placeholder: "Email",
       className: "h-[44px] text-base",
       rules: [
-        { required: true, message: "Personal Number harus diisi" },
         {
-          min: 4, //min characters
-          message: "Personal Number minimal 4 karakter",
-        },
-        {
-          max: 15, //max characters
-          message: "Personal Number maksimal 15 karakter",
+          required: true,
+          // message: "Personal Number harus diisi",
+          type: "email",
         },
       ],
     },
@@ -85,7 +83,8 @@ export default function FormLogin() {
           size="large"
           type="primary"
           // shape="round"
-          loading={loading}>
+          loading={loading}
+        >
           Masuk
         </Button>
       </div>

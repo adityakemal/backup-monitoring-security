@@ -1,6 +1,7 @@
 import { memo } from "react";
 import { Image } from "antd";
 import { Screenshot } from "../../../types/dashboard.type";
+import dayjs from "dayjs";
 
 interface RecentScreenshotsProps {
   screenshots: Screenshot[];
@@ -20,13 +21,16 @@ const RecentScreenshots = ({ screenshots }: RecentScreenshotsProps) => {
             className="rounded-md object-cover"
             alt={item.window_title}
             preview={{
-              destroyOnClose: true,
+              destroyOnHidden: true,
               footer: (
                 <div className="mb-16 bg-black w-fit bg-opacity-50 text-white text-xs p-1 rounded mx-auto">
                   <div>
                     {item.is_flagged ? (
                       <span className="text-red-500 font-semibold text-xs">
-                        Flagged
+                        Flagged{" "}
+                        <i className="!text-yellow-500 font-light text-xs ">
+                          {dayjs(item.timestamp).format("DD-MM-YYYY HH:mm:ss")}
+                        </i>
                       </span>
                     ) : (
                       <span className="text-green-500 font-semibold text-xs">
@@ -34,7 +38,7 @@ const RecentScreenshots = ({ screenshots }: RecentScreenshotsProps) => {
                       </span>
                     )}
                   </div>
-                  {item.window_title}
+                  {item.window_title}, Keyword: {item.keywords.toString()}
                 </div>
               ),
             }}

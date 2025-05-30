@@ -12,6 +12,12 @@ function Provider({ children }: React.PropsWithChildren) {
   // const client = new QueryClient({
 
   const queryClient = new QueryClient({
+    defaultOptions: {
+      queries: {
+        retry: 1, // maksimal retry 2 kali untuk queries
+        retryDelay: (attemptIndex) => Math.min(1000 * 2 ** attemptIndex, 30000), // exponential backoff
+      },
+    },
     queryCache: new QueryCache({
       onError: (error) => {
         // cache-level queries error handler

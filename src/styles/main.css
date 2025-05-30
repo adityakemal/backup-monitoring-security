@@ -10,8 +10,15 @@
   /* font-weight: 300; */
 }
 
-
 @import "tailwindcss";
+@theme {
+  --breakpoint-sm: 640px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 1024px;
+  --breakpoint-xl: 1280px;
+  --breakpoint-2xl: 1536px;
+}
+
 @custom-variant dark (&:where(.dark, .dark *));
 /* @custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *)); */
 
@@ -73,9 +80,22 @@
     h4,
     h5,
     h6,
-    span,
+    span:not(.ant-btn span), /* Exclude button spans */
     form {
       @apply text-mainText;
+    }
+
+    /* Add button text overrides */
+    .ant-btn {
+      @apply !text-current; /* Use the button's intended text color */
+    }
+
+    .ant-btn-primary {
+      @apply !text-white; /* Force white text on primary buttons */
+    }
+
+    .ant-btn-primary span {
+      @apply !text-white; /* Force white text on spans inside primary buttons */
     }
 
     .bg-dynamic {
@@ -86,8 +106,6 @@
       @apply !bg-mainBgPaper;
     }
 
-   
-
     .dark {
       /* dark */
       p,
@@ -97,9 +115,18 @@
       h4,
       h5,
       h6,
-      span,
+      span:not(.ant-btn span), /* Exclude button spans in dark mode too */
       form {
         @apply text-mainTextDark;
+      }
+
+      /* Dark mode button overrides */
+      .ant-btn-primary {
+        @apply !text-white;
+      }
+
+      .ant-btn-primary span {
+        @apply !text-white;
       }
 
       .bg-dynamicBase {
@@ -107,10 +134,8 @@
       }
 
       .bg-dynamic {
-        @apply !bg-neutral-800 border-0 shadow-none; /* Changed to a slightly lighter shade for contrast */
+        @apply !bg-neutral-800 border-0 shadow-none;
       }
-     
-
     }
 }
 
@@ -327,7 +352,7 @@ input[type='number'] {
   @apply !bg-neutral-50 dark:!bg-neutral-800 
          !text-neutral-500 dark:!text-neutral-400 
          !font-medium !text-xs md:!text-sm !uppercase 
-         !border-neutral-200 dark:!border-neutral-700;
+         !border-neutral-200 dark:!border-neutral-700 whitespace-nowrap;
 }
 
 /* Body styles */

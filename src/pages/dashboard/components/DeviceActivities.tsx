@@ -26,7 +26,7 @@ export default function DeviceTable({
       render: (_: any, object: any) => (
         <div className="flex flex-col gap-1">
           <div className="font-bold">{object.total_activities}</div>
-          <div className="grid grid-cols-3 items-center gap-1 font-mono w-fit text-xs">
+          <div className="flex flex-wrap items-center gap-1 font-mono w-fit text-xs">
             <Tooltip title="Screen Activities" placement="top">
               <span className="whitespace-nowrap flex items-center gap-1 rounded-md !text-black bg-[#e9d502] p-1">
                 <MdOutlineFitScreen color="" /> {object?.activity_count}
@@ -81,7 +81,7 @@ export default function DeviceTable({
       ),
     },
     {
-      title: "DETAILS",
+      title: "",
       key: "details",
       render: () => <Button type="link">Details</Button>,
     },

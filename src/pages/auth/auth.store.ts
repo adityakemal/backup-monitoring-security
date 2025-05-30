@@ -1,5 +1,5 @@
 import { create } from "zustand";
-import { fetcherGET, fetcherPOST } from "../../lib/fetcher";
+import { authFetcherPOST, fetcherGET, fetcherPOST } from "../../lib/fetcher";
 
 interface IAuthStore {
   loading: boolean;
@@ -22,7 +22,7 @@ export const useAuthStore = create<IAuthStore>()((set) => ({
   postLogin: async (body) => {
     set({ loading: true });
     try {
-      const data = await fetcherPOST(`/auth/sign-in/`, body);
+      const data = await authFetcherPOST(`/auth/login/`, body);
 
       set({
         loading: false,

@@ -1,6 +1,6 @@
 import { cn } from "../../../lib/helper";
 import { FiCheck } from "react-icons/fi";
-import { useUserMonitoringStore } from "../userMonitoring.store";
+import { employeeMonitoringStore } from "../employeeMonitoring.store";
 
 const flaggedData = {
   activities: 12,
@@ -31,7 +31,7 @@ const summary = [
 ];
 
 export default function FlaggedSummary() {
-  const { flaggedFilter, toggleFlaggedFilter } = useUserMonitoringStore();
+  const { flaggedFilter, toggleFlaggedFilter } = employeeMonitoringStore();
 
   const handleToggle = (key: string) => {
     if (key === "score") return; // Score tidak bisa di-toggle

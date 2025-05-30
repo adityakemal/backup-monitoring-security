@@ -5,6 +5,7 @@ import { acceptablePathList } from "../../../lib/routes";
 import {
   RiBarChart2Line,
   RiSettings4Line,
+  RiUserSearchFill,
   RiUserSearchLine,
 } from "react-icons/ri";
 
@@ -13,6 +14,8 @@ import { cn } from "../../../lib/helper";
 import { useStorageStore } from "../storage.store";
 import React from "react";
 import colors from "../../../lib/colors";
+import { UserAddOutlined } from "@ant-design/icons";
+import { FaUsers } from "react-icons/fa";
 
 const { Sider } = Layout;
 const { useBreakpoint } = Grid;
@@ -63,10 +66,17 @@ export default function SidebarCustom({
       <RiBarChart2Line className="text-mainText dark:text-mainTextDark" />
     ),
     getItem(
-      "User Monitoring",
-      "/user-monitoring",
-      <RiUserSearchLine className="text-mainText dark:text-mainTextDark" />
+      "Employee Monitoring",
+      "/employee-monitoring",
+      <RiUserSearchFill className="text-mainText dark:text-mainTextDark" />
     ),
+
+    getItem(
+      "Employee",
+      "/employee",
+      <FaUsers className="text-mainText dark:text-mainTextDark" />
+    ),
+
     // getItem("Task Management", "sub_1", <AuditOutlined />, [
     //   getItem("Mantri Task", "/task", null),
     //   getItem("Brief Report", "/brief-report", null),
@@ -94,6 +104,11 @@ export default function SidebarCustom({
     {
       type: "divider", // Must have
     },
+    // getItem(
+    //   "User Monitoring",
+    //   "/user-monitoring",
+    //   <RiUserSearchLine className="text-mainText dark:text-mainTextDark" />
+    // ),
   ];
 
   const { collapsed, setCollapsed, setOpenKeys, openKeys } = useSharedStore();

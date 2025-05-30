@@ -4,15 +4,17 @@ import LoginContainer from "../pages/auth/LoginContainer";
 import { PrivateRoute, PublicRoute } from "./helper";
 import { Button, Result } from "antd";
 import { useStorageStore } from "../pages/shared/storage.store";
-import SettingContainer from "../pages/setting/SettingContainer";
 
 import ForgotPasswordContainer from "../pages/auth/ForgotPasswordContainer";
 import OtpVerifyContainer from "../pages/auth/OtpVerifyContainer";
 import CongratPage from "../pages/auth/components/Congratulation";
 import NewPasswordContainer from "../pages/auth/NewPasswordContainer";
 import DashboardContainer from "../pages/dashboard/DashboardContainer";
-import UserMonitoringContainer from "../pages/userMonitoring/UserMonitoringContainer";
-// import UserManagementContainer from '../pages/userManagement/UserManagementContainer';
+import SettingContainer from "../pages/setting/SettingContainer";
+import EmployeeContainer from "../pages/employee/EmployeeContainer";
+
+import EmployeeMonitoringContainer from "../pages/employeeMonitoring/EmployeeMonitoringContainer";
+import AddEmployeeContainer from "../pages/employee/AddEmployeeContainer";
 
 const { role } = useStorageStore.getState();
 
@@ -28,8 +30,18 @@ const superAdminRoutes = [
     onlyAccessBy: "auth",
   },
   {
-    path: "/user-monitoring",
-    element: <UserMonitoringContainer />,
+    path: "/employee-monitoring",
+    element: <EmployeeMonitoringContainer />,
+    onlyAccessBy: "auth",
+  },
+  {
+    path: "/employee",
+    element: <EmployeeContainer />,
+    onlyAccessBy: "auth",
+  },
+  {
+    path: "/form-employee",
+    element: <AddEmployeeContainer />,
     onlyAccessBy: "auth",
   },
 ];

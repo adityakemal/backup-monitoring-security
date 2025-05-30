@@ -1,7 +1,5 @@
 import { create } from "zustand";
 import { devtools, persist } from "zustand/middleware";
-// import { IRegion } from "../userManagement/userManagement.type";
-// import { devtools, persist } from "zustand/middleware";
 
 export interface IStorage {
   auth: boolean;
@@ -9,33 +7,25 @@ export interface IStorage {
   fullname: string;
   email: string;
   role: string | null;
-  // refresh_token: string;
-  // personal_number: string;
-  // is_active: boolean;
-  // location: any;
+  refresh_token: string;
   handleToken: (params?: any) => void;
-  // handleRefreshToken: (params?: any) => void;
+  handleRefreshToken: (params?: any) => void;
   handleLogout: () => void;
-  // region?: IRegion | null;
-  // branch?: IRegion | null;
-  // unit?: IRegion | null;
+
   // otpDate: number;
   // handleOtpDate: (state: any) => void;
-  // isOnProcessUploadReferralBulk: boolean;
-  // handleIsOnProcessUploadReferralBulk: (state: boolean) => void;
-  // isOnProcessUploadUserBulk: boolean;
-  // handleIsOnProcessUploadUserBulk: (state: boolean) => void;
+
   mode: ThemeMode;
   setMode: (mode: ThemeMode) => void;
   toggleTheme: () => void;
 }
 
-interface IRole {
-  // level?: number | undefined;
-  name?: string | undefined;
-  code?: string;
-  // uuid?: string | undefined;
-}
+// interface IRole {
+//   // level?: number | undefined;
+//   name?: string | undefined;
+//   code?: string;
+//   // uuid?: string | undefined;
+// }
 
 type ThemeMode = "light" | "dark" | "system";
 
@@ -67,7 +57,6 @@ export const useStorageStore = create<IStorage>()(
           }
         },
         // otpDate: Date.now(),
-        // refresh_token: "",
         // personal_number: "",
         // is_active: false,
         // location: null,
@@ -82,6 +71,7 @@ export const useStorageStore = create<IStorage>()(
         //     isOnProcessUploadUserBulk: val,
         //   }),
 
+        refresh_token: "",
         handleToken: async (val) => {
           set({
             auth: true,
@@ -89,20 +79,18 @@ export const useStorageStore = create<IStorage>()(
             fullname: val.full_name,
             email: val.email,
             role: val.role,
-            // refresh_token: val.refresh_token,
-            // personal_number: val.personal_number,
+            refresh_token: val.refresh_token,
             // is_active: val.is_active,
-            // location: val.location,
           });
           window.location.reload();
         },
-        // handleRefreshToken: async (val) => {
-        //   set({
-        //     token: val.token,
-        //     refresh_token: val.refresh_token,
-        //   });
-        //   // window.location.reload();
-        // },
+        handleRefreshToken: async (val: any) => {
+          set({
+            token: val.token,
+            refresh_token: val.refresh_token,
+          });
+          // window.location.reload();
+        },
         // handleOtpDate: async (state) => set({ otpDate: state }),
         handleLogout: async () => {
           window.localStorage.clear();

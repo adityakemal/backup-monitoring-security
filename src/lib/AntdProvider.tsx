@@ -66,13 +66,45 @@ export default function AntdProvider({ children }: { children: ReactNode }) {
           Button: {
             fontSizeLG: 14,
             paddingBlockLG: 1,
+
+            // Primary Button Colors - Make sure text is always white/contrast
             colorPrimaryBg: colors.primary.main,
             colorPrimaryBgHover: colors.primary.light,
             colorPrimaryBorder: colors.primary.main,
             colorPrimaryBorderHover: colors.primary.light,
             colorPrimaryHover: colors.primary.light,
             colorPrimaryActive: colors.primary.dark,
-            colorPrimaryTextActive: colors.primary.contrast,
+            colorPrimaryText: colors.primary.contrast, // White text on primary
+            colorPrimaryTextHover: colors.primary.contrast, // Keep white on hover
+            colorPrimaryTextActive: colors.primary.contrast, // Keep white on active
+
+            // Default Button Colors (for non-primary buttons)
+            colorText:
+              mode === "dark" ? colors.text.dark.primary : colors.text.primary,
+            colorTextSecondary:
+              mode === "dark"
+                ? colors.text.dark.secondary
+                : colors.text.secondary,
+            colorTextDisabled:
+              mode === "dark"
+                ? colors.text.dark.disabled
+                : colors.text.disabled,
+
+            // Default Button Background
+            colorBgContainer:
+              mode === "dark" ? colors.neutral[800] : colors.background.paper,
+            colorBorder:
+              mode === "dark" ? colors.border.dark : colors.border.main,
+            colorBgContainerDisabled:
+              mode === "dark" ? colors.neutral[900] : colors.neutral[100],
+
+            // Ghost Button Colors
+            colorBgTextHover:
+              mode === "dark" ? colors.action.dark.hover : colors.action.hover,
+            colorBgTextActive:
+              mode === "dark"
+                ? colors.action.dark.selected
+                : colors.action.selected,
           },
           DatePicker: {
             // inputFontSize: 12,

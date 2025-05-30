@@ -10,9 +10,9 @@ const TopWebsites = ({ websites }: TopWebsitesProps) => {
   return (
     <div className="p-5 rounded-xl bg-dynamic space-y-4">
       <p className="font-semibold">Top Websites</p>
-      {websites.map((item) => (
+      {websites.map((item, i) => (
         <div
-          key={item.url}
+          key={i}
           className="flex justify-between items-start pb-3 gap-x-3 last:-none"
         >
           <div className="flex items-start gap-3 w-full overflow-hidden ">
