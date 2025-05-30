@@ -86,6 +86,28 @@ export default function ListEmployee() {
       ),
     },
     {
+      title: "DEVICES",
+      dataIndex: "devices",
+      key: "devices",
+      render: (devices: any, object: any) => (
+        <div className="flex flex-col gap-1">
+          <div className="font-bold">
+            <div className="flex flex-wrap gap-1">
+              {devices?.map((device: any) => (
+                <Tooltip
+                  key={device.id}
+                  title={`Identifier: ${device.device_identifier}`}
+                  placement="top"
+                >
+                  <Tag color="blue">{device.device_name}</Tag>
+                </Tooltip>
+              ))}
+            </div>
+          </div>
+        </div>
+      ),
+    },
+    {
       title: "",
       key: "id",
       width: 100,
