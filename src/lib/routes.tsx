@@ -12,9 +12,14 @@ import NewPasswordContainer from "../pages/auth/NewPasswordContainer";
 import DashboardContainer from "../pages/dashboard/DashboardContainer";
 import SettingContainer from "../pages/setting/SettingContainer";
 import EmployeeContainer from "../pages/employee/EmployeeContainer";
-
 import EmployeeMonitoringContainer from "../pages/employeeMonitoring/EmployeeMonitoringContainer";
 import AddEmployeeContainer from "../pages/employee/AddEmployeeContainer";
+
+// New imports for Device and Group
+import DeviceContainer from "../pages/device/DeviceContainer";
+import AddDeviceContainer from "../pages/device/AddDeviceContainer";
+import GroupContainer from "../pages/group/GroupContainer";
+import AddGroupContainer from "../pages/group/AddGroupContainer";
 
 const { role } = useStorageStore.getState();
 
@@ -42,6 +47,28 @@ const superAdminRoutes = [
   {
     path: "/form-employee",
     element: <AddEmployeeContainer />,
+    onlyAccessBy: "auth",
+  },
+  // New Device routes
+  {
+    path: "/device",
+    element: <DeviceContainer />,
+    onlyAccessBy: "auth",
+  },
+  {
+    path: "/form-device",
+    element: <AddDeviceContainer />,
+    onlyAccessBy: "auth",
+  },
+  // New Group routes
+  {
+    path: "/group",
+    element: <GroupContainer />,
+    onlyAccessBy: "auth",
+  },
+  {
+    path: "/form-group",
+    element: <AddGroupContainer />,
     onlyAccessBy: "auth",
   },
 ];

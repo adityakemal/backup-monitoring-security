@@ -67,11 +67,11 @@ export default function ListEmployee() {
       title: "GROUPS",
       dataIndex: "groups",
       key: "groups",
-      render: (_: any, object: any) => (
+      render: (groups: any) => (
         <div className="flex flex-col gap-1">
           <div className="font-bold">
             <div className="flex flex-wrap gap-1">
-              {object.groups.map((group: any) => (
+              {groups.map((group: any) => (
                 <Tooltip
                   key={group.id}
                   title={group.description}
@@ -89,7 +89,7 @@ export default function ListEmployee() {
       title: "DEVICES",
       dataIndex: "devices",
       key: "devices",
-      render: (devices: any, object: any) => (
+      render: (devices: any) => (
         <div className="flex flex-col gap-1">
           <div className="font-bold">
             <div className="flex flex-wrap gap-1">
