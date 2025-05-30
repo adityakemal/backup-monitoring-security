@@ -162,7 +162,7 @@ const ListGroup = () => {
         onCancel={handleCloseModal}
         footer={null}
         width={800}
-        destroyOnClose={false}
+        destroyOnHidden={false}
         maskClosable={true}
       >
         <Spin spinning={isLoadingDetails}>
