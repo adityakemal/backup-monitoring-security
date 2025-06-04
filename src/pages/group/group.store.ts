@@ -1,5 +1,10 @@
 import { create } from "zustand";
-import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import {
+  keepPreviousData,
+  useMutation,
+  useQuery,
+  useQueryClient,
+} from "@tanstack/react-query";
 import { fetcherGET, fetcherPOST } from "../../lib/fetcher";
 
 interface BaseResponse<T> {
@@ -32,6 +37,7 @@ export const useGetGroup = (params: any) => {
 
       return data || null;
     },
+    placeholderData: keepPreviousData,
   });
 
   return query;

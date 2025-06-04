@@ -217,14 +217,29 @@ export default function AntdProvider({ children }: { children: ReactNode }) {
               mode === "dark"
                 ? colors.text.dark.secondary
                 : colors.text.secondary,
-            borderRadius: 8,
+
             fontSize: 14,
+            // paddingBlock: 8,
+            // paddingInline: 12,
+            // height: 40,
+            // lineHeight: 40,
+            borderRadius: 8,
             colorBgContainerDisabled:
               mode === "dark" ? colors.neutral[900] : colors.neutral[100],
             colorTextDisabled:
               mode === "dark"
                 ? colors.text.dark.disabled
                 : colors.text.disabled,
+            colorBgElevated:
+              mode === "dark" ? colors.neutral[900] : colors.background.paper,
+            optionSelectedBg:
+              mode === "dark"
+                ? colors.primary.main + "40"
+                : colors.primary.main + "10",
+            optionActiveBg:
+              mode === "dark"
+                ? colors.primary.main + "80"
+                : colors.primary.main + "20",
           },
           // Add more component customizations as needed
         },

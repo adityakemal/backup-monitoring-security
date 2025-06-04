@@ -269,7 +269,8 @@ export default function FormGenerator({
         // disabled={componentDisabled}
         style={{ ...formStyle }}
         labelCol={{ ...labelCol }}
-        wrapperCol={{ ...wrapperCol }}>
+        wrapperCol={{ ...wrapperCol }}
+      >
         {data.map((res: any, i: number) => {
           //TEXT
           if (res?.type === "text") {
@@ -283,7 +284,8 @@ export default function FormGenerator({
                 layout={res.layout}
                 label={res?.label}
                 name={res?.name}
-                rules={res?.rules}>
+                rules={res?.rules}
+              >
                 <Input
                   placeholder={res?.placeholder}
                   className={res?.className}
@@ -308,7 +310,8 @@ export default function FormGenerator({
                     type: "email",
                     message: "The input is not valid E-mail!",
                   },
-                ]}>
+                ]}
+              >
                 <Input
                   placeholder={res.placeholder}
                   className={res?.className}
@@ -325,7 +328,8 @@ export default function FormGenerator({
                 layout={res.layout}
                 label={res?.label}
                 name={res?.name}
-                rules={res?.rules}>
+                rules={res?.rules}
+              >
                 <Input.Password
                   className={res?.className}
                   placeholder={res?.placeholder}
@@ -359,7 +363,8 @@ export default function FormGenerator({
                       );
                     },
                   }),
-                ]}>
+                ]}
+              >
                 <Input.Password
                   className={res?.className}
                   placeholder={res?.placeholder}
@@ -376,7 +381,8 @@ export default function FormGenerator({
                 layout={res.layout}
                 label={res?.label}
                 name={res?.name}
-                rules={res?.rules}>
+                rules={res?.rules}
+              >
                 <InputNumber
                   style={{ minWidth: 140 }}
                   placeholder={res?.placeholder}
@@ -400,7 +406,8 @@ export default function FormGenerator({
                 layout={res.layout}
                 label={res?.label}
                 name={res?.name}
-                rules={res?.rules}>
+                rules={res?.rules}
+              >
                 <InputNumber
                   style={{ minWidth: 140 }}
                   placeholder={res?.placeholder}
@@ -428,7 +435,8 @@ export default function FormGenerator({
                 layout={res.layout}
                 label={res?.label}
                 name={res?.name}
-                rules={res?.rules}>
+                rules={res?.rules}
+              >
                 <Input
                   placeholder={res?.placeholder}
                   className={res?.className}
@@ -448,7 +456,8 @@ export default function FormGenerator({
                 layout={res.layout}
                 key={i}
                 name={res.name}
-                rules={res?.rules}>
+                rules={res?.rules}
+              >
                 <Select
                   placeholder={res?.placeholder}
                   defaultValue={res?.defaultValue}
@@ -487,12 +496,11 @@ export default function FormGenerator({
                 layout={res.layout}
                 key={i}
                 name={res.name}
-                rules={res?.rules}>
+                rules={res?.rules}
+              >
                 <Select
                   placeholder={res.placeholder}
                   className={res?.className}
-                  // maxTagCount="responsive"
-                  // labelInValue={true}
                   mode="multiple"
                   showSearch
                   optionFilterProp="children"
@@ -519,7 +527,8 @@ export default function FormGenerator({
                 layout={res.layout}
                 key={i}
                 name={res.name}
-                rules={res?.rules}>
+                rules={res?.rules}
+              >
                 <Checkbox.Group>
                   {res.options.map((option: any, optIdx: number) => (
                     <Checkbox key={optIdx} value={option.value}>
@@ -542,7 +551,8 @@ export default function FormGenerator({
                 key={i}
                 name={res.name}
                 rules={res?.rules}
-                valuePropName="checked">
+                valuePropName="checked"
+              >
                 <Checkbox key={i}>{res?.labelCheckbox}</Checkbox>
               </Form.Item>
             );
@@ -557,10 +567,12 @@ export default function FormGenerator({
                 key={i}
                 name={res.name}
                 initialValue={res.initialValue}
-                rules={res?.rules}>
+                rules={res?.rules}
+              >
                 <Radio.Group
                   className={res?.className}
-                  defaultValue={res?.defaultValue}>
+                  defaultValue={res?.defaultValue}
+                >
                   {res?.options?.map((option: any, optIdx: number) => (
                     <Radio key={optIdx} value={option.value}>
                       {option.label}
@@ -579,14 +591,17 @@ export default function FormGenerator({
                 layout={res.layout}
                 key={i}
                 name={res.name}
-                rules={res?.rules}>
+                rules={res?.rules}
+              >
                 <Radio.Group
-                  className={`flex items-center gap-2 flex-wrap pt-3 ${res?.className}`}>
+                  className={`flex items-center gap-2 flex-wrap pt-3 ${res?.className}`}
+                >
                   {res.options.map((option: any, optIdx: number) => (
                     <Radio.Button
                       key={optIdx}
                       value={option.value}
-                      className="inline-flex items-center rounded-md before:!content-none !border-2 hover:!border-[#00529C]">
+                      className="inline-flex items-center rounded-md before:!content-none !border-2 hover:!border-[#00529C]"
+                    >
                       {option.label}
                     </Radio.Button>
                   ))}
@@ -604,7 +619,8 @@ export default function FormGenerator({
                 key={i}
                 name={res.name}
                 rules={res?.rules}
-                initialValue={res.min}>
+                initialValue={res.min}
+              >
                 <Slider min={res.min} max={res.max} />
               </Form.Item>
             );
@@ -621,7 +637,8 @@ export default function FormGenerator({
                 name={res.name}
                 rules={res?.rules}
                 valuePropName="checked"
-                initialValue>
+                initialValue
+              >
                 <Switch
                   style={{
                     background: isValueTrue ? "green" : "gray",
@@ -645,7 +662,8 @@ export default function FormGenerator({
                 key={i}
                 name={res.name}
                 // className={res?.className}
-                rules={res?.rules}>
+                rules={res?.rules}
+              >
                 <DatePicker
                   format={res.previewFormat}
                   className={res?.className}
@@ -669,7 +687,8 @@ export default function FormGenerator({
                 layout={res.layout}
                 key={i}
                 name={res.name}
-                rules={res?.rules}>
+                rules={res?.rules}
+              >
                 <RangePicker
                   className={res?.className}
                   format={res.previewFormat}
@@ -696,7 +715,8 @@ export default function FormGenerator({
                 layout={res.layout}
                 key={i}
                 name={res.name}
-                rules={res?.rules}>
+                rules={res?.rules}
+              >
                 <TextArea
                   className={res?.className}
                   placeholder={res?.placeholder}
@@ -717,7 +737,8 @@ export default function FormGenerator({
                 key={i}
                 name={res.name}
                 rules={res?.rules}
-                valuePropName="string || {}">
+                valuePropName="string || {}"
+              >
                 <Upload
                   listType="picture-card"
                   className="avatar-uploader"
@@ -732,7 +753,8 @@ export default function FormGenerator({
                       res?.uploadType,
                       res?.withUpload
                     )
-                  }>
+                  }
+                >
                   {Loading && <Spin />}
                   {imageSource && !Loading && (
                     <img
@@ -764,7 +786,8 @@ export default function FormGenerator({
                 key={i}
                 name={res.name}
                 rules={res?.rules}
-                valuePropName="string || {}">
+                valuePropName="string || {}"
+              >
                 <div className={`grid gap-4 grid-cols-4 ${res?.className}`}>
                   {listMultipleImages?.map((res: any, i: number) => (
                     <img
@@ -791,7 +814,8 @@ export default function FormGenerator({
                         res?.uploadType,
                         res?.withUpload
                       )
-                    }>
+                    }
+                  >
                     {loadingMultipleImage && (
                       <div className="flex justify-center items-center w-screen">
                         <Spin />

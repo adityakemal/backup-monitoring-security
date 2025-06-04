@@ -255,7 +255,7 @@ input[type='number'] {
 .ant-input,
 .ant-input-number,
 .ant-select-selector {
-  @apply !bg-mainBgPaper dark:!bg-neutral-800 !border-neutral-200 dark:!border-neutral-700 !text-mainText dark:!text-mainTextDark !rounded-lg;
+  @apply !bg-mainBgPaper dark:!bg-neutral-800 !border-neutral-200 dark:!border-neutral-700 !text-mainText dark:!text-mainTextDark !rounded-lg 
 }
 
 .ant-input:hover,
@@ -282,21 +282,8 @@ input[type='number'] {
   @apply !bg-neutral-100 dark:!bg-neutral-900 !text-mainTextDisabled dark:!text-mainTextDarkDisabled;
 }
 
-/* Select dropdown styles */
-.ant-select-dropdown {
-  @apply !bg-mainBgPaper dark:!bg-neutral-800 !border-neutral-200 dark:!border-neutral-700;
-}
-
-.ant-select-item {
-  @apply !text-mainText dark:!text-mainTextDark;
-}
-
-.ant-select-item-option-selected {
-  @apply !bg-mainColor/10 dark:!bg-mainColor/20 !text-mainColor dark:!text-mainColorLight;
-}
-
-.ant-select-item-option-active {
-  @apply !bg-mainColor/5 dark:!bg-mainColor/10;
+.ant-select-selector {
+  @apply h-[40px]
 }
 
 /* //table  */

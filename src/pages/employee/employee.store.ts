@@ -1,5 +1,10 @@
 import { create } from "zustand";
-import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import {
+  keepPreviousData,
+  useMutation,
+  useQuery,
+  useQueryClient,
+} from "@tanstack/react-query";
 import { fetcherGET, fetcherPOST } from "../../lib/fetcher";
 // import { fetcherPOST } from "../../lib/fetcher";
 
@@ -67,6 +72,7 @@ export const useGetEmployee = (params: any) => {
 
       return data || null;
     },
+    placeholderData: keepPreviousData,
   });
 
   return query;
