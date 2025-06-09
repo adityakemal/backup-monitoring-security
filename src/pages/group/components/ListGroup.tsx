@@ -26,9 +26,12 @@ const ListGroup = () => {
     id: selectedGroupId,
   });
 
+  const [page, setPage] = useState(1);
+  const [pageSize, setPageSize] = useState(10);
+
   const { data, isLoading } = useGetGroup({
-    page: 1,
-    page_size: 10,
+    limit: 10,
+    offset: 0,
   });
 
   const handleDetails = async (id: number) => {
@@ -149,9 +152,26 @@ const ListGroup = () => {
         loading={isLoading}
         rowKey="id"
         pagination={{
-          total: data?.count || 0,
+          size: "default",
+          current: page,
+          // current: parseInt(CurrentPage),
+          // defaultCurrent: 1,
+          onChange: (p) => {
+            setPage(p);
+          },
+          pageSize: pageSize,
+          // size: pageSize,
           showSizeChanger: true,
-          showQuickJumper: true,
+          total: data?.count,
+          onShowSizeChange: (p, s) => {
+            setPage(p);
+            setPageSize(s);
+          },
+          showTotal: (total, range) => (
+            <span style={{ left: 0, position: "absolute", fontSize: 12 }}>
+              Showing {range[0]} to {range[1]} of {total} results
+            </span>
+          ),
         }}
       />
 

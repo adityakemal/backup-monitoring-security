@@ -1,11 +1,11 @@
 import LayoutCustom from "../shared/components/LayoutCustom";
-import ListAnalytics from "./components/ListAnalytics";
+import ListAnalysisEmployee from "./components/ListAnalysisEmployee";
 
-export default function EmployeeAnalyticsContainer() {
+export default function EmployeeAnalysisContainer() {
   return (
     <LayoutCustom>
       <div className=" space-y-4">
-        <ListAnalytics />
+        <ListAnalysisEmployee />
       </div>
     </LayoutCustom>
   );

@@ -25,9 +25,12 @@ const ListDevice = () => {
     id: selectedDeviceId,
   });
 
+  const [page, setPage] = useState(1);
+  const [pageSize, setPageSize] = useState(10);
+
   const { data, isLoading } = useGetDevice({
-    page: 1,
-    page_size: 10,
+    offset: 0,
+    limit: 10,
   });
 
   const handleDetails = async (id: number) => {
@@ -116,7 +119,28 @@ const ListDevice = () => {
         columns={columns}
         dataSource={data?.results}
         loading={isLoading}
-        pagination={false}
+        pagination={{
+          size: "default",
+          current: page,
+          // current: parseInt(CurrentPage),
+          // defaultCurrent: 1,
+          onChange: (p) => {
+            setPage(p);
+          },
+          pageSize: pageSize,
+          // size: pageSize,
+          showSizeChanger: true,
+          total: data?.count,
+          onShowSizeChange: (p, s) => {
+            setPage(p);
+            setPageSize(s);
+          },
+          showTotal: (total, range) => (
+            <span style={{ left: 0, position: "absolute", fontSize: 12 }}>
+              Showing {range[0]} to {range[1]} of {total} results
+            </span>
+          ),
+        }}
       />
 
       <Modal

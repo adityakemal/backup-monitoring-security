@@ -1,7 +1,7 @@
-import { create } from 'zustand';
+import { create } from "zustand";
 
-import dayjs from 'dayjs';
-import { fetcherPOST } from '../../lib/fetcher';
+import dayjs from "dayjs";
+import { fetcherPOST } from "../../lib/fetcher";
 
 interface ISharedState {
   collapsed: any;
@@ -17,10 +17,10 @@ interface ISharedState {
 }
 
 export const useSharedStore = create<ISharedState>()((set) => ({
-  collapsed: '',
+  collapsed: "",
   openKeys: [],
   loading: false,
-  dateRangeFilter: [dayjs().add(-7, 'd'), dayjs()],
+  dateRangeFilter: [dayjs().add(-7, "d"), dayjs()],
   handleDateRange: (payload) => set({ dateRangeFilter: payload }),
   setCollapsed: (payload) => set({ collapsed: payload }),
 
@@ -48,11 +48,11 @@ export const useSharedStore = create<ISharedState>()((set) => ({
     try {
       const url = `/common/file/`;
       const data = await fetcherPOST(url, body);
-      console.log(data, 'data zustand upload file');
+      console.log(data, "data zustand upload file");
       set({ loading: false });
       return Promise.resolve(data);
     } catch (error: any) {
-      console.log(error.message, 'error zustand');
+      console.log(error.message, "error zustand");
       set({ loading: false });
       return Promise.reject(error);
     }

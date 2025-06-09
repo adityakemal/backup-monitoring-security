@@ -15,6 +15,7 @@ import { cn } from "../../../lib/helper";
 import { useStorageStore } from "../storage.store";
 import React from "react";
 import colors from "../../../lib/colors";
+import { FaPeopleGroup } from "react-icons/fa6";
 
 const { Sider } = Layout;
 const { useBreakpoint } = Grid;
@@ -70,11 +71,7 @@ export default function SidebarCustom({
       "/employee-monitoring",
       <RiUserSearchFill className="text-mainText dark:text-mainTextDark" />
     ),
-    getItem(
-      "Employee Analytics",
-      "/employee-analytics",
-      <FaUserSecret className="text-mainText dark:text-mainTextDark" />
-    ),
+
     getItem(
       "Employee Management",
       "sub_1",
@@ -97,6 +94,23 @@ export default function SidebarCustom({
         ),
       ]
     ),
+    getItem(
+      "Analysis",
+      "sub_2",
+      <FaUserSecret className="text-mainText dark:text-mainTextDark" />,
+      [
+        getItem(
+          "Employee Analysis",
+          "/employee-analysis",
+          <FaUserSecret className="text-mainText dark:text-mainTextDark" />
+        ),
+        getItem(
+          "Group Analysis",
+          "/group-analysis",
+          <FaPeopleGroup className="text-mainText dark:text-mainTextDark" />
+        ),
+      ]
+    ),
 
     // getItem(
     //   "Setting",
@@ -114,17 +128,21 @@ export default function SidebarCustom({
     window.location.pathname.split("/").filter((f) => f !== "")[0]
   }`;
 
-  const rootSubmenuKeys: any = ["sub_1"];
+  // const rootSubmenuKeys: any = ["sub_1", "sub_2"];
+
+  // const onOpenChange = (keys: any) => {
+  //   const latestOpenKey = keys.find(
+  //     (key: string) => openKeys.indexOf(key) === -1
+  //   );
+  //   if (rootSubmenuKeys.indexOf(latestOpenKey) === -1) {
+  //     setOpenKeys(keys);
+  //   } else {
+  //     setOpenKeys(latestOpenKey ? [latestOpenKey] : []);
+  //   }
+  // };
 
   const onOpenChange = (keys: any) => {
-    const latestOpenKey = keys.find(
-      (key: string) => openKeys.indexOf(key) === -1
-    );
-    if (rootSubmenuKeys.indexOf(latestOpenKey) === -1) {
-      setOpenKeys(keys);
-    } else {
-      setOpenKeys(latestOpenKey ? [latestOpenKey] : []);
-    }
+    setOpenKeys(keys);
   };
 
   return (
