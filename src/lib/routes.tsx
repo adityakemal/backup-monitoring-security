@@ -20,6 +20,7 @@ import DeviceContainer from "../pages/device/DeviceContainer";
 import AddDeviceContainer from "../pages/device/AddDeviceContainer";
 import GroupContainer from "../pages/group/GroupContainer";
 import AddGroupContainer from "../pages/group/AddGroupContainer";
+import EmployeeAnalyticsContainer from "../pages/employeeAnalytics/EmployeeAnalyticsContainer";
 
 const { role } = useStorageStore.getState();
 
@@ -37,6 +38,11 @@ const superAdminRoutes = [
   {
     path: "/employee-monitoring",
     element: <EmployeeMonitoringContainer />,
+    onlyAccessBy: "auth",
+  },
+  {
+    path: "/employee-analytics",
+    element: <EmployeeAnalyticsContainer />,
     onlyAccessBy: "auth",
   },
   {

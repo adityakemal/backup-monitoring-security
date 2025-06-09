@@ -12,6 +12,8 @@ dayjs.extend(relativeTime);
 export default function ListEmployee() {
   const { mode } = useStorageStore();
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [page, setPage] = useState(1);
+  const [pageSize, setPageSize] = useState(5);
   const [selectedEmployeeId, setSelectedEmployeeId] = useState<number | null>(
     null
   );
@@ -27,8 +29,8 @@ export default function ListEmployee() {
   });
 
   const { data, isLoading } = useGetEmployee({
-    page: 1,
-    page_size: 10,
+    limit: pageSize,
+    offset: (page - 1) * pageSize,
   });
 
   const handleDetails = async (id: number) => {
@@ -150,12 +152,34 @@ export default function ListEmployee() {
   ];
 
   return (
-    <div className=" overflow-y-auto max-h-[50vh]">
+    <div className=" overflow-y-auto">
       <Table
         dataSource={data?.results}
         loading={isLoading}
         columns={columns}
-        pagination={false}
+        // pagination={false}
+        pagination={{
+          size: "default",
+          current: page,
+          // current: parseInt(CurrentPage),
+          // defaultCurrent: 1,
+          onChange: (p) => {
+            setPage(p);
+          },
+          pageSize: pageSize,
+          // size: pageSize,
+          showSizeChanger: true,
+          total: data?.count,
+          onShowSizeChange: (p, s) => {
+            setPage(p);
+            setPageSize(s);
+          },
+          showTotal: (total, range) => (
+            <span style={{ left: 0, position: "absolute", fontSize: 12 }}>
+              Showing {range[0]} to {range[1]} of {total} results
+            </span>
+          ),
+        }}
       />
       <Modal
         open={isModalOpen}

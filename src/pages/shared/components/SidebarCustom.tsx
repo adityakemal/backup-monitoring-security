@@ -7,7 +7,7 @@ import {
   RiSettings4Line,
   RiUserSearchFill,
 } from "react-icons/ri";
-import { FaUsers } from "react-icons/fa";
+import { FaUsers, FaUserSecret } from "react-icons/fa";
 import { MdDevices, MdGroup } from "react-icons/md";
 
 import LogoCustom from "./LogoCustom";
@@ -71,28 +71,41 @@ export default function SidebarCustom({
       <RiUserSearchFill className="text-mainText dark:text-mainTextDark" />
     ),
     getItem(
-      "Employee",
-      "/employee",
-      <FaUsers className="text-mainText dark:text-mainTextDark" />
+      "Employee Analytics",
+      "/employee-analytics",
+      <FaUserSecret className="text-mainText dark:text-mainTextDark" />
     ),
     getItem(
-      "Device",
-      "/device",
-      <MdDevices className="text-mainText dark:text-mainTextDark" />
+      "Employee Management",
+      "sub_1",
+      <FaUsers className="text-mainText dark:text-mainTextDark" />,
+      [
+        getItem(
+          "Employee",
+          "/employee",
+          <FaUsers className="text-mainText dark:text-mainTextDark" />
+        ),
+        getItem(
+          "Device",
+          "/device",
+          <MdDevices className="text-mainText dark:text-mainTextDark" />
+        ),
+        getItem(
+          "Group",
+          "/group",
+          <MdGroup className="text-mainText dark:text-mainTextDark" />
+        ),
+      ]
     ),
-    getItem(
-      "Group",
-      "/group",
-      <MdGroup className="text-mainText dark:text-mainTextDark" />
-    ),
-    getItem(
-      "Setting",
-      "/setting",
-      <RiSettings4Line className="text-mainText dark:text-mainTextDark" />
-    ),
-    {
-      type: "divider",
-    },
+
+    // getItem(
+    //   "Setting",
+    //   "/setting",
+    //   <RiSettings4Line className="text-mainText dark:text-mainTextDark" />
+    // ),
+    // {
+    //   type: "divider",
+    // },
   ];
 
   const { collapsed, setCollapsed, setOpenKeys, openKeys } = useSharedStore();

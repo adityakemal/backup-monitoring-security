@@ -7,13 +7,6 @@ import {
 } from "@tanstack/react-query";
 import { fetcherGET, fetcherPOST } from "../../lib/fetcher";
 
-interface BaseResponse<T> {
-  count: number;
-  next: string | null;
-  previous: string | null;
-  results: T;
-}
-
 interface IGroup {
   id: number;
   name: string;
@@ -67,4 +60,4 @@ export const usePostGroup = () => {
   });
 };
 
-export type { IGroup, BaseResponse };
+export type { IGroup };
